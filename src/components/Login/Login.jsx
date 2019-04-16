@@ -1,20 +1,38 @@
 import React, { Component } from 'react'
 
 import { Link } from 'react-router-dom'
+import axios from 'axios';
 
 export class Login extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      email: '',
+      password: ''
+    }
+  }
+
+  async login() {
+    const { email, password } = this.state
+    const res = await axios.post('/auth/login', { email, password })
+    if (res.data.loggedIn) this.props.history.push('/')
+    else alert('Login Failed')
+  }
+
+
   render() {
     return (
       <div>
         <div>
           <h1>Login</h1>
           <span>Email</span>
-          <input type='text'></input>
+          <input onChange={(e) => this.setState({ email: e.target.value })} value={this.state.email} type='text'></input>
           <span>Password</span>
-          <input type='text'></input>
-          <Link to='/'>
-            <button>Login</button>
-          </Link>
+          <input onChange={(e) => this.setState({ password: e.target.value })} value={this.state.password} type='text'></input>
+          
+            <button onClick={() => this.login()}>Login</button>
+          
 
         </div>
         <div>

@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom'
 
 export class Customer extends Component {
   render() {
+    console.log(this.props)
     return (
       <div>
         <h1>Customer</h1>
