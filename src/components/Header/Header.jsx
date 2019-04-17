@@ -14,7 +14,7 @@ export class Header extends Component {
 
   render() {
     console.log(this.props)
-    const { name, id } = this.props.user
+    const { name, id, admin } = this.props.user
     return (
       <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
         <div>
@@ -24,22 +24,43 @@ export class Header extends Component {
         </div>
         <div>
           {
-            id ? (
-              <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
+            id && admin ? (
+              <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
                 <div >
-                  Hello {name} 
+                  Admin User, {name}
+                </div>
+                <div>
+                  <button>Loan Products</button>
+                </div>
+                <div>
+                  <button>Equipment</button>
+                </div>
+                <div>
+                  <button>Utilities</button>
+                </div>
+                <div>
+                  <button>Users</button>
+                </div>
+                <a href="http://localhost:5678/logout">
+                  <button>Logout</button>
+                </a>
+              </div>
+            ) : id ? (
+              <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+                <div >
+                  Hello {name}
                 </div>
                 <a href="http://localhost:5678/logout">
                   <button>Logout</button>
                 </a>
               </div>
             ) : (
-                <div>
-                  <Link to='/login'>
-                    <button>Login</button>
-                  </Link>
-                </div>
-              )
+                  <div>
+                    <Link to='/login'>
+                      <button>Login</button>
+                    </Link>
+                  </div>
+                )
           }
 
         </div>

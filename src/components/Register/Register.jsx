@@ -22,7 +22,7 @@ export class Register extends Component {
     const { firstName, lastName, email, password, isAdmin, isRep } = this.state
     const res = await axios.post('/auth/register', { firstName, lastName, email, password, isAdmin, isRep })
     if (res.data.loggedIn) this.props.history.push('/')
-    else alert('Registration failed')
+    else alert(res.data.message)
   }
 
 

@@ -17,7 +17,8 @@ export class Login extends Component {
     const { email, password } = this.state
     const res = await axios.post('/auth/login', { email, password })
     if (res.data.loggedIn) this.props.history.push('/')
-    else alert('Login Failed')
+    else alert(res.data.message)
+    console.log(res.data.message)
   }
 
 
@@ -29,11 +30,8 @@ export class Login extends Component {
           <span>Email</span>
           <input onChange={(e) => this.setState({ email: e.target.value })} value={this.state.email} type='text'></input>
           <span>Password</span>
-          <input onChange={(e) => this.setState({ password: e.target.value })} value={this.state.password} type='text'></input>
-          
-            <button onClick={() => this.login()}>Login</button>
-          
-
+          <input onChange={(e) => this.setState({ password: e.target.value })} value={this.state.password} type='password'></input>
+          <button onClick={() => this.login()}>Login</button>
         </div>
         <div>
           <span>Don't have an account? Register </span>

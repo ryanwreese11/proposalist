@@ -24,14 +24,14 @@ module.exports = {
     const db = req.app.get('db')
     const userArr = await db.find_user_by_email([email])
     if (!userArr[0]) {
-      return res.status(401).send({ message: 'Account not found' })
+      return res.status(200).send({ message: 'Email not found' })
     }
     console.log(password, userArr[0])
     const result = bcrypt.compareSync(password, userArr[0].user_hash)
     if (!result) {
-      return res.status(401).send({ message: 'Incorrect password' })
+      return res.status(200).send({ message: 'Incorrect password' })
     }
-    req.session.user = { name: userArr[0].user_first_name, email: userArr[0].user_email, id: userArr[0].user_id }
+    req.session.user = { name: userArr[0].user_first_name, email: userArr[0].user_email, id: userArr[0].user_id, admin: userArr[0].is_admin }
     res.status(200).send({
       message: 'Login Successful',
       loggedIn: true,
@@ -41,12 +41,12 @@ module.exports = {
 
   userData(req, res) {
     if (req.session.user) res.status(200).send(req.session.user)
-    else res.status(401).send('Please Log In')
+    else res.status(200).send('Please Log In')
   },
 
 
   logout(req, res) {
     req.session.destroy();
-    res.redirect('http://localhost:3000')
+    res.redirect('http://localhost:3000/#/login')
   }
 }

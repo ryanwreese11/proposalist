@@ -39,4 +39,5 @@ massive(CONNECTION_STRING)
   
   // ---- CUSTOMER CONTROLLERS ---- //
   app.get('/api/customers', cc.getAll)
+  app.post('/api/customers',cc.newCust)
 
