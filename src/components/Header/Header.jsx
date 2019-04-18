@@ -27,19 +27,25 @@ export class Header extends Component {
             id && admin ? (
               <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
                 <div >
-                  Admin User, {name}
+                  <span>Admin User, {name} </span>
                 </div>
                 <div>
                   <button>Loan Products</button>
                 </div>
                 <div>
-                  <button>Equipment</button>
+                  <Link to="/equipment">
+                    <button>Equipment</button>
+                  </Link>
                 </div>
                 <div>
-                  <button>Utilities</button>
+                  <Link to="/utilities">
+                    <button>Utilities</button>
+                  </Link>
                 </div>
                 <div>
-                  <button>Users</button>
+                  <Link to="/register">
+                    <button>Users</button>
+                  </Link>
                 </div>
                 <a href="http://localhost:5678/logout">
                   <button>Logout</button>

@@ -26,7 +26,7 @@ module.exports = {
     if (!userArr[0]) {
       return res.status(200).send({ message: 'Email not found' })
     }
-    console.log(password, userArr[0])
+    
     const result = bcrypt.compareSync(password, userArr[0].user_hash)
     if (!result) {
       return res.status(200).send({ message: 'Incorrect password' })

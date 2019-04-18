@@ -41,7 +41,7 @@ export class Dashboard extends Component {
         </Link>
 
         {this.state.customers.map(item => {
-          return <Customer key={item.id} customer={item}
+          return <Customer key={item.cust_id} customer={item}
             customers={this.state.customers} />
         })}
 

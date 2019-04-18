@@ -3,9 +3,9 @@
 module.exports = {
   newCust: async (req, res) => {
     const { firstName, lastName, email, address, utility, notes, apptDate, apptTime, custProgress } =req.body
-    console.log(req.body)
-    const {id} = req.session
-    console.log(req.session.user)
+   
+    const {id} = req.session.user
+    
     const db = req.app.get('db')
     const custArr = await db.find_cust_by_email([email])
     if (custArr[0]) {

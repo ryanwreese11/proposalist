@@ -6,16 +6,16 @@ import { connect } from 'react-redux'
 
 export class Customer extends Component {
   render() {
-
+console.log(this.props)
 const multiply = (num1, num2) => {
   return Math.floor(num1 * num2)
 }
 
 
-    console.log(this.props)
+    
     const { cust_first_name, cust_last_name, cust_email, cust_address, cust_usage, cust_notes, user_appt_date, user_appt_time, utility_name, utility_rate } = this.props.customer
     return (
-      <div>
+      <div style={{borderBottom: '1px solid black' }}>
 
         <div>
           <div>

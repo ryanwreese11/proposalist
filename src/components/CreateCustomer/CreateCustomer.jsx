@@ -44,10 +44,10 @@ export class CreateCustomer extends Component {
           <span>Utility: </span>
           <select onChange={(e) => this.setState({ utility: e.target.value })} value={this.state.utility}>
             <option placeholder="select utility"></option>
-            <option value="Excel Energy">Excel Energy</option>
-            <option value="rmp">Rocky Mountain Power</option>
-            <option value="irea">IREA</option>
-            <option value="unitedPower">United Power</option>
+            <option value="Xcel Energy">Xcel Energy</option>
+            <option value="Rocky Mountain Power">Rocky Mountain Power</option>
+            <option value="IREA">IREA</option>
+            <option value="United Power">United Power</option>
           </select>
           <span>Notes:</span>
           <input onChange={(e) => this.setState({ notes: e.target.value })} value={this.state.notes} type='text'></input>
