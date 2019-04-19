@@ -30,7 +30,9 @@ export class Header extends Component {
                   <span>Admin User, {name} </span>
                 </div>
                 <div>
-                  <button>Loan Products</button>
+                  <Link to='/loans'>
+                    <button>Loan Products</button>
+                  </Link>
                 </div>
                 <div>
                   <Link to="/equipment">

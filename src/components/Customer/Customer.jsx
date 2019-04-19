@@ -1,21 +1,23 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { getData } from './../../ducks/userReducer'
 
 
 
 export class Customer extends Component {
+
+
   render() {
-console.log(this.props)
-const multiply = (num1, num2) => {
-  return Math.floor(num1 * num2)
-}
+    console.log(this.props)
+    const multiply = (num1, num2) => {
+      return Math.floor(num1 * num2)
+    }
 
 
-    
     const { cust_first_name, cust_last_name, cust_email, cust_address, cust_usage, cust_notes, user_appt_date, user_appt_time, utility_name, utility_rate } = this.props.customer
     return (
-      <div style={{borderBottom: '1px solid black' }}>
+      <div style={{ borderBottom: '1px solid black' }}>
 
         <div>
           <div>
@@ -44,4 +46,4 @@ const multiply = (num1, num2) => {
 
 const mapState = (reduxState) => reduxState
 
-export default connect(mapState)(Customer)
+export default connect(mapState, { getData })(Customer)

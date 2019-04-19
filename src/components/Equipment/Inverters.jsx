@@ -8,8 +8,14 @@ const{inv_name, inv_type} = this.props.inverter
 
     return (
       <div style={{borderBottom: '1px solid black' }}>
+      <div>
         <h2>{inv_name}</h2>
         <h3>{inv_type}</h3>
+        </div>
+        <div>
+          <button>Edit Inverter</button>
+          <button>Remove Inverter</button>
+        </div>
       </div>
     )
   }

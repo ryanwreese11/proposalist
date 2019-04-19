@@ -36,7 +36,8 @@ export class Register extends Component {
 
   async createUser() {
     const { firstName, lastName, email, password, isAdmin, isRep } = this.state
-    await axios.post('/api/users', { firstName, lastName, email, password, isAdmin, isRep })
+    await axios.post('/api/users', { firstName, lastName, email, password, isAdmin, isRep }).then(this.setState({ edit: false }))
+
 
   }
 
@@ -59,6 +60,18 @@ export class Register extends Component {
     })
   }
 
+  handleAccountChange = async () => {
+    await this.setState({
+      isRep: !this.state.isRep
+    })
+    console.log(this.state)
+  }
+  handleAdmin = async () => {
+    await this.setState({
+      isAdmin: !this.state.isAdmin
+    })
+    console.log(this.state)
+  }
 
 
 
@@ -66,6 +79,7 @@ export class Register extends Component {
     const { admin } = this.props.user
     return (
       <div>
+        <h1>Users</h1>
         {
           admin ? (
             <div>
@@ -83,13 +97,15 @@ export class Register extends Component {
                     <input onChange={(e) => this.setState({ password: e.target.value })} value={this.state.password} type='text'></input>
                   </div>
                   <div>
-                    <span>Account Type: </span>
-                    <input type="radio" />
-                    <span>Designer </span>
-                    <input type="radio" onChange={(e) => this.setState({ isRep: e.target.value })} />
-                    <span>Sales Rep </span>
-                    <input type="radio" onChange={(e) => this.setState({ isAdmin: e.target.value })} />
-                    <span>Administrator </span>
+                    <form>
+                      <span>Account Type: </span>
+                      <input type="radio" />
+                      <span>Designer </span>
+                      <input type="radio" onChange={this.handleAccountChange} />
+                      <span>Sales Rep </span>
+                      <input type="radio" onChange={this.handleAdmin} />
+                      <span>Administrator </span>
+                    </form>
                   </div>
                   <div>
                     <button onClick={() => this.createUser()} >Create User</button>

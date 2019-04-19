@@ -12,11 +12,11 @@ export class Utilities extends Component {
       utilities: []
     }
   }
-      componentDidMount() {
-        this.getUtilities()
-        this.props.getData()
-        
-      }
+
+  componentDidMount() {
+    this.getUtilities()
+    this.props.getData()
+  }
 
 
 
@@ -29,13 +29,12 @@ export class Utilities extends Component {
     })
   }
 
-
-
   render() {
-    
     return (
       <div>
-        
+        <h1>Utility Companies</h1>
+        <button>New Utility</button>
+
         {this.state.utilities.map(item => {
           return <Utility key={item.utility_id} utility={item}
             utilities={this.state.utilities} />

@@ -12,7 +12,7 @@ module.exports = {
   },
 
   createUser: async (req, res) => {
-    const { firstName, lastName, email, password } = req.body
+    const { firstName, lastName, email, password, isAdmin, isRep} = req.body
     const db = req.app.get('db')
     const userArr = await db.find_user_by_email([email])
     if (userArr[0]) {
@@ -20,7 +20,7 @@ module.exports = {
     }
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(password, salt);
-    await db.create_user([firstName, lastName, email, hash]);
+    await db.create_user([firstName, lastName, email, hash, isAdmin, isRep]);
 
   },
 

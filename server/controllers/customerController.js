@@ -16,8 +16,9 @@ module.exports = {
 
   getAll: (req, res) => {
     req.app.get('db')
-      .get_customers()
-      .then((customers) => {
+    .get_customers()
+    .then((customers) => {
+      
         res.status(200).send(customers)
       })
       .catch(err => {

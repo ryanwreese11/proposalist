@@ -24,7 +24,7 @@ export class CreateCustomer extends Component {
 
   newCust() {
     const { firstName, lastName, email, address, utility, notes, apptDate, apptTime, custProgress} = this.state
-    const res =  axios.post('/api/customers', { firstName, lastName, email, address, utility, notes, apptDate, apptTime, custProgress}).then(() => {
+    const res =  axios.post('/api/customers', { firstName, lastName, email, address, utility, notes, apptDate, apptTime, custProgress}).then(this.props.history.push('/'),() => {
       res.status(200).send('New Listing Created')
     })
   }

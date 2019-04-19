@@ -1,12 +1,13 @@
 require('dotenv').config()
 
-const {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET} = process.env;
+const { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET } = process.env;
 
 const ac = require('./controllers/authController')
 const cc = require('./controllers/customerController')
 const uc = require('./controllers/userController')
 const utc = require('./controllers/utilityController')
 const ec = require('./controllers/equipmentController')
+const lc = require('./controllers/loanController')
 
 const express = require('express')
 const session = require('express-session')
@@ -30,33 +31,41 @@ massive(CONNECTION_STRING)
     app.listen(SERVER_PORT, () => console.log(`Listening on port:${SERVER_PORT}`))
   })
 
-  // --- ENDPOINTS --- //
+// --- ENDPOINTS --- //
 
 
-  // ---- AUTH CONTROLLERS ---- //
-  app.post('/auth/register', ac.register)
-  app.get('/auth/user-data', ac.userData)
-  app.post('/auth/login', ac.login)
-  app.get('/logout', ac.logout)
-  
-  
-  // ---- CUSTOMER CONTROLLERS ---- //
-  app.get('/api/customers', cc.getAll)
-  app.post('/api/customers',cc.newCust)
+// ---- AUTH CONTROLLERS ---- //
+app.post('/auth/register', ac.register)
+app.get('/auth/user-data', ac.userData)
+app.post('/auth/login', ac.login)
+app.get('/logout', ac.logout)
 
 
-  // ---- USER CONTROLLERS ---- //
-
-  app.get('/api/users', uc.getUsers)
-  app.post('/api/users', uc.createUser)
-
-
-  // ---- UTILITY CONTROLLERS ---- //
-  
-  app.get('/api/utilities', utc.getUtilities)
+// ---- CUSTOMER CONTROLLERS ---- //
+app.get('/api/customers', cc.getAll)
+app.post('/api/customers', cc.newCust)
 
 
-  // ---- EQUIPMENT CONTROLLERS ---- //
+// ---- USER CONTROLLERS ---- //
 
-  app.get('/api/modules', ec.getModules)
-  app.get('/api/inverters', ec.getInverters)
+app.get('/api/users', uc.getUsers)
+app.post('/api/users', uc.createUser)
+
+
+// ---- UTILITY CONTROLLERS ---- //
+
+app.get('/api/utilities', utc.getUtilities)
+
+
+// ---- EQUIPMENT CONTROLLERS ---- //
+
+app.get('/api/modules', ec.getModules)
+app.get('/api/inverters', ec.getInverters)
+app.post('/api/modules', ec.createModule)
+app.post('/api/inverters', ec.createInverter)
+
+
+
+// ---- LOAN CONTROLLERS ---- //
+
+app.get('/api/loans', lc.getLoans)

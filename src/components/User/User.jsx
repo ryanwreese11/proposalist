@@ -26,7 +26,7 @@ export class User extends Component {
             }
           </div>
           <button>Edit User</button>
-          <button>Delete User</button>
+          <button>Remove User</button>
         </div>
       </div>
     )

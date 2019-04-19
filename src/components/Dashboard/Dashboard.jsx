@@ -20,8 +20,8 @@ export class Dashboard extends Component {
     this.getCustomers()
   }
   
-  getCustomers() {
-    axios.get('/api/customers').then(res => {
+  async getCustomers() {
+    await axios.get('/api/customers').then(res => {
       this.setState({
         customers: res.data
       })
@@ -42,7 +42,8 @@ export class Dashboard extends Component {
 
         {this.state.customers.map(item => {
           return <Customer key={item.cust_id} customer={item}
-            customers={this.state.customers} />
+            customers={this.state.customers}
+            />
         })}
 
       </div>

@@ -5,18 +5,24 @@ import { connect } from 'react-redux'
 export class Utility extends Component {
 
   render() {
-    const { utility_name, utility_rate } = this.props.utility
+    const { utility_name, utility_rate, utility_ppw, utility_location } = this.props.utility
 
     return (
-      <div style={{borderBottom: '1px solid black' }}>
-        <div>
-          <h2>{utility_name}</h2>
+      <div>
+        <div style={{ borderBottom: '1px solid black' }}>
+          <div>
+            <h2>{utility_name}</h2>
+            <span>{utility_location}</span>
+          </div>
+          <div>
+            <span>Rate: ${utility_rate}/kWh</span>
+          </div>
+          <div>
+            <span>Area Pricing: {utility_ppw}/watt</span>
+          </div>
+          <button>Edit Utility</button>
+          <button>Remove Utility</button>
         </div>
-        <div>
-          <span>${utility_rate}/kWh</span>
-        </div>
-        <button>Edit Utility</button>
-        <button>Delete Utility</button>
       </div>
     )
   }
