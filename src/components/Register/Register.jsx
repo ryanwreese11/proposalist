@@ -38,8 +38,9 @@ export class Register extends Component {
     const { firstName, lastName, email, password, isAdmin, isRep } = this.state
     await axios.post('/api/users', { firstName, lastName, email, password, isAdmin, isRep }).then(this.setState({ edit: false }))
 
-
   }
+
+  
 
   handleNewClick = () => {
     this.setState({
@@ -119,7 +120,8 @@ export class Register extends Component {
                     </div>
                     {this.state.accounts.map(item => {
                       return <User key={item.user_id} account={item}
-                        accounts={this.state.accounts} />
+                        accounts={this.state.accounts}
+                         />
                     })}
                   </div>
                 )

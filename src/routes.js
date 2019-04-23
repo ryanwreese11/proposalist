@@ -10,6 +10,8 @@ import CreateCustomer from './components/CreateCustomer/CreateCustomer'
 import Utilities from './components/Utilities/Utilities'
 import Equipment from './components/Equipment/Equipment'
 import LoanProducts from './components/LoanProducts/LoanProducts'
+import Proposal from './components/Proposal/Proposal'
+import System from './components/System/System'
 
 
 
@@ -17,12 +19,14 @@ export default (
   <Switch>
     <Route path='/' exact component={Dashboard} />
     <Route path='/customer' component={Customer} />
-    <Route path='/usage' component={Usage} />
+    <Route path='/usage/:cust_id' component={Usage} />
+    <Route path='/proposal/:cust_id' component={Proposal} />
     <Route path='/login' component={Login} />
     <Route path='/register' component={Register} />
     <Route path='/newcust' component={CreateCustomer} />
     <Route path='/utilities' component={Utilities} />
     <Route path='/equipment' component={Equipment} />
     <Route path='/loans' component={LoanProducts} />
+    <Route path='/system/:cust_id' component={System} />
   </Switch>
 )

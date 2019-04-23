@@ -124,3 +124,82 @@ from customer c
 join utility u on c.utility_id = u.utility_id
 order by user_appt_date, user_appt_time;
 
+
+
+insert into users (user_first_name, user_last_name, user_email, user_hash, is_admin, is_rep)
+values ($1, $2, $3, $4, $5, $6)
+returning *;
+
+insert into module (mod_name, mod_size)
+values($1, $2)
+returning *;
+
+insert into inverter (inv_name, inv_type)
+values($1, $2);
+select * from inverter;
+
+insert into loan_product (loan_name, loan_term, loan_interest, pre_pmt_factor, post_pmt_factor)
+values($1,$2,$3,$4,$5)
+
+insert into utility (utility_name, utility_rate, utility_location, utility_ppw)
+values($1,$2,$3,$4)
+
+insert into customer (
+  cust_first_name,
+  cust_last_name,
+  cust_email,
+  cust_address,
+  utility_id,
+  cust_notes,
+  user_appt_date,
+  user_appt_time,
+  user_id,
+  cust_progress
+  
+)
+select $1, $2, $3, $4, u.utility_id, $6, $7, $8, $9, $10
+  from utility u
+where u.utility_name = $5
+
+returning *;
+
+
+select * from utility
+order by utility_name
+
+select * from loan_product
+order by loan_name, loan_term
+
+select * from module
+order by mod_name
+
+select * from inverter
+order by inv_name
+
+select * from users
+order by user_last_name
+
+select * 
+from customer 
+where cust_email = $1
+
+insert into utility (utility_name, utility_rate, utility_location, utility_ppw)
+values($1,$2,$3,$4)
+
+insert into loan_product (loan_name, loan_term, loan_interest, pre_pmt_factor, post_pmt_factor)
+values ($1,$2,$3,$4,$5)
+
+----- UPDATED GET CUSTOMERS FOR WHEN THE SALES REP IS LOGGED IN TO ONLY SEE THEIR/ALSO ADDED SALES REPS NAME ----
+
+select c.cust_id, c.user_id, c.cust_first_name, c.cust_last_name, c.cust_email, c.cust_address, c.cust_usage, c.cust_notes, c.cust_progress, c.user_appt_date, c.user_appt_time, u.utility_name, u.utility_rate, us.user_first_name, us.user_last_name
+from customer c 
+join utility u on c.utility_id = u.utility_id
+join users us on c.user_id = us.user_id
+where c.user_id = $1
+order by user_appt_date, user_appt_time;
+
+select c.cust_id, c.user_id, c.cust_first_name, c.cust_last_name, c.cust_email, c.cust_address, c.cust_usage, c.cust_notes, c.cust_progress, c.user_appt_date, c.user_appt_time, u.utility_name, u.utility_rate, us.user_first_name, us.user_last_name
+from customer c 
+join utility u on c.utility_id = u.utility_id
+join users us on c.user_id = us.user_id
+order by user_appt_date, user_appt_time;

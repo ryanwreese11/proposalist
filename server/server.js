@@ -43,7 +43,10 @@ app.get('/logout', ac.logout)
 
 // ---- CUSTOMER CONTROLLERS ---- //
 app.get('/api/customers', cc.getAll)
+app.get('/api/customers/:id', cc.getCustomersById)
 app.post('/api/customers', cc.newCust)
+app.get('/api/usage/:cust_id', cc.getCustomer)
+app.put('/api/usage/:cust_id', cc.updateCustomer)
 
 
 // ---- USER CONTROLLERS ---- //
@@ -52,9 +55,11 @@ app.get('/api/users', uc.getUsers)
 app.post('/api/users', uc.createUser)
 
 
+
 // ---- UTILITY CONTROLLERS ---- //
 
 app.get('/api/utilities', utc.getUtilities)
+app.post('/api/utilities', utc.createUtility)
 
 
 // ---- EQUIPMENT CONTROLLERS ---- //
@@ -69,3 +74,4 @@ app.post('/api/inverters', ec.createInverter)
 // ---- LOAN CONTROLLERS ---- //
 
 app.get('/api/loans', lc.getLoans)
+app.post('/api/loans', lc.createLoan)

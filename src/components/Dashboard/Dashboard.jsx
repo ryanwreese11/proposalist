@@ -13,19 +13,33 @@ export class Dashboard extends Component {
     }
   }
 
-  
-  
-  componentDidMount() {
-    this.props.getData()
-    this.getCustomers()
+
+
+  componentDidMount = async () => {
+    await this.props.getData()
+    console.log(this.props)
+    if (this.props.user.rep) {
+      this.getCustomersById(this.props.user.id)
+    } else {
+      this.getCustomers()
+    }
   }
-  
-  async getCustomers() {
+
+  getCustomers = async () => {
     await axios.get('/api/customers').then(res => {
       this.setState({
         customers: res.data
       })
-      console.log(res.data)
+    })
+  }
+
+  getCustomersById = async () => {
+    let { id } = this.props.user
+
+    await axios.get(`/api/customers/${id}`).then(res => {
+      this.setState({
+        customers: res.data
+      })
     })
   }
 
@@ -35,7 +49,7 @@ export class Dashboard extends Component {
     return (
       <div>
         <h1>Dashboard</h1>
-        
+
         <Link to='/newcust'>
           <button>New Customer</button>
         </Link>
@@ -43,7 +57,7 @@ export class Dashboard extends Component {
         {this.state.customers.map(item => {
           return <Customer key={item.cust_id} customer={item}
             customers={this.state.customers}
-            />
+          />
         })}
 
       </div>

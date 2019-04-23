@@ -8,5 +8,12 @@ module.exports = {
       }).catch(err => {
         res.status(418).send('Cannot get utilities')
       })
+  },
+
+  createUtility: (req, res) => {
+    const {utilityName, utilityRate, utilityLocation, utilityPpw } = req.body
+    req.app.get('db')
+    .create_utility([utilityName, utilityRate, utilityLocation, utilityPpw])
   }
+
 }

@@ -22,6 +22,8 @@ module.exports = {
     const hash = bcrypt.hashSync(password, salt);
     await db.create_user([firstName, lastName, email, hash, isAdmin, isRep]);
 
-  },
+  }
+
+  
 
 }

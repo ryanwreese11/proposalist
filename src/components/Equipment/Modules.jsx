@@ -14,7 +14,6 @@ export class Modules extends Component {
         </div>
         <div>
           <button>Edit Module</button>
-          <button>Remove Module</button>
         </div>
       </div>
     )

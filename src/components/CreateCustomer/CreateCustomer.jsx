@@ -9,7 +9,7 @@ export class CreateCustomer extends Component {
 
     this.state = {
 
-
+      utilities: [],
       firstName: '',
       lastName: '',
       email: '',
@@ -22,14 +22,33 @@ export class CreateCustomer extends Component {
     }
   }
 
-  newCust() {
+  componentDidMount() {
+    this.getUtilities()
+  }
+
+  newCust = () => {
     const { firstName, lastName, email, address, utility, notes, apptDate, apptTime, custProgress} = this.state
-    const res =  axios.post('/api/customers', { firstName, lastName, email, address, utility, notes, apptDate, apptTime, custProgress}).then(this.props.history.push('/'),() => {
-      res.status(200).send('New Listing Created')
+    const res =  axios.post('/api/customers', { firstName, lastName, email, address, utility, notes, apptDate, apptTime, custProgress}).then(this.props.history.push('/'),(customers) => {
+      res.status(200).send(customers)
     })
   }
 
+  getUtilities = () => {
+    axios.get('/api/utilities').then(res => {
+      console.log(res.data)
+      this.setState({
+        utilities: res.data
+      })
+    })
+  }
+
+
+
   render() {
+
+    let mappedUtilities = this.state.utilities.map((utility, i) => {
+      return <option key={i}>{`${utility.utility_name}`}</option>
+    })
     return (
       <div>
         <div>
@@ -43,11 +62,8 @@ export class CreateCustomer extends Component {
           <input onChange={(e) => this.setState({ address: e.target.value })} value={this.state.address} type='text'></input>
           <span>Utility: </span>
           <select onChange={(e) => this.setState({ utility: e.target.value })} value={this.state.utility}>
-            <option placeholder="select utility"></option>
-            <option value="Xcel Energy">Xcel Energy</option>
-            <option value="Rocky Mountain Power">Rocky Mountain Power</option>
-            <option value="IREA">IREA</option>
-            <option value="United Power">United Power</option>
+            {mappedUtilities}
+
           </select>
           <span>Notes:</span>
           <input onChange={(e) => this.setState({ notes: e.target.value })} value={this.state.notes} type='text'></input>

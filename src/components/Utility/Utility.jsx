@@ -21,7 +21,6 @@ export class Utility extends Component {
             <span>Area Pricing: {utility_ppw}/watt</span>
           </div>
           <button>Edit Utility</button>
-          <button>Remove Utility</button>
         </div>
       </div>
     )

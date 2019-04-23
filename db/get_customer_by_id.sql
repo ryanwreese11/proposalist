@@ -2,4 +2,5 @@ select c.cust_id, c.user_id, c.cust_first_name, c.cust_last_name, c.cust_email, 
 from customer c 
 join utility u on c.utility_id = u.utility_id
 join users us on c.user_id = us.user_id
+where c.cust_id = $1
 order by user_appt_date, user_appt_time;

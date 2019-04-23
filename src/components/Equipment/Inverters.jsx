@@ -14,7 +14,6 @@ const{inv_name, inv_type} = this.props.inverter
         </div>
         <div>
           <button>Edit Inverter</button>
-          <button>Remove Inverter</button>
         </div>
       </div>
     )

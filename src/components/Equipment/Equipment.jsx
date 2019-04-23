@@ -48,17 +48,17 @@ export class Equipment extends Component {
   }
 
   async createModule() {
-    const {modName, modSize} = this.state
-     axios.post('/api/modules', {modName, modSize})
-    .then(this.setState({modCreate: false}))
-    .then(this.props.history.push('/equipment'))
+    const { modName, modSize } = this.state
+    axios.post('/api/modules', { modName, modSize })
+    .then(this.getModules())
+     .then(this.setState({ modCreate: false }))
   }
 
   async createInverter() {
-    const {invName, invType} = this.state
-     axios.post('/api/inverters', {invName, invType})
-    .then(this.setState({invCreate: false}))
-    .then(this.props.history.push('/equipment'))
+    const { invName, invType } = this.state
+    axios.post('/api/inverters', { invName, invType })
+      .then(this.setState({ invCreate: false }))
+      .then(this.props.history.push('/equipment'))
   }
 
   handleChange = e => {
@@ -68,14 +68,14 @@ export class Equipment extends Component {
     })
   }
 
-  modClick =() => {
+  modClick = () => {
     this.setState({
       modCreate: true
     })
   }
 
   invClick = () => {
-    this.setState ({
+    this.setState({
       invCreate: true
     })
   }
@@ -107,7 +107,7 @@ export class Equipment extends Component {
                 <input value={this.state.modSize} name="modSize" placeholder='watts' onChange={this.handleChange}></input>
               </div>
               <div>
-                <button onClick={()=> this.createModule()}>Create Module</button>
+                <button onClick={() => this.createModule()}>Create Module</button>
                 <button onClick={() => this.cancelClick()}>Cancel</button>
               </div>
             </div>

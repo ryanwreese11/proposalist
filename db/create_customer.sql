@@ -13,6 +13,6 @@ insert into customer (
 )
 select $1, $2, $3, $4, u.utility_id, $6, $7, $8, $9, $10
   from utility u
-where u.utility_name = $5
+where u.utility_name = $5;
 
-returning *;
+select * from customer;

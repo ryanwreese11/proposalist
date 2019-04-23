@@ -10,11 +10,12 @@ export class LoanProucts extends Component {
     super(props)
     this.state = {
       loanName: '',
-      laonTerm: '',
+      loanTerm: '',
       interest: '',
       prePmtFactor: '',
       postPmtFactor: '',
-      loans: []
+      loans: [],
+      edit: false
     }
 
   }
@@ -33,17 +34,74 @@ export class LoanProucts extends Component {
     })
   }
 
+  createClick = () => {
+    this.setState({
+      edit: true
+    })
+  }
+
+  cancelClick = () => {
+    this.setState({
+      edit: false
+    })
+  }
+
+  handleChange = e => {
+    let { name, value } = e.target
+    this.setState({
+      [name]: value
+    })
+  }
+
+  async createLoan() {
+    const { loanName, loanTerm, interest, prePmtFactor, postPmtFactor } = this.state
+    await axios.post('/api/loans', { loanName, loanTerm, interest, prePmtFactor, postPmtFactor })
+      .then(this.setState({ edit: false }))
+
+    await this.getLoans()
+
+  }
+
   render() {
     return (
       <div>
         <h1>Financial Products</h1>
-        <button>Add New Product</button>
-        
-        {this.state.loans.map(item => {
-          return <Loan key={item.loan_id} loan={item}
-          loans={this.state.loans}/>
-        })}
-        
+        {
+          this.state.edit ? (
+            <div>
+              <div>
+                <h3>This is where we edit</h3>
+                <span>Financial Product</span>
+                <input value={this.state.loanName} name="loanName" onChange={this.handleChange}></input>
+                <span>Loan Term</span>
+                <input value={this.state.loanTerm} name="loanTerm" onChange={this.handleChange}></input>
+                <span>Interest Rate</span>
+                <input value={this.state.interest} name="interest" onChange={this.handleChange}></input>
+                <span>Payment factor if ITC applied</span>
+                <input value={this.state.prePmtFactor} name="prePmtFactor" onChange={this.handleChange}></input>
+                <span>Payment factor if ITC is NOT applied</span>
+                <input value={this.state.postPmtFactor} name="postPmtFactor" onChange={this.handleChange}></input>
+              </div>
+              <div>
+                <button onClick={() => this.createLoan()}>Create Product</button>
+                <button onClick={() => this.cancelClick()}>Cancel</button>
+              </div>
+            </div>
+          ) : (
+              <div>
+                <button onClick={() => this.createClick()}>Add New Product</button>
+
+                {this.state.loans.map(item => {
+                  return <Loan key={item.loan_id} loan={item}
+                    loans={this.state.loans} />
+                })}
+              </div>
+
+            )
+        }
+
+
+
       </div>
     )
   }
