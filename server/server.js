@@ -8,6 +8,7 @@ const uc = require('./controllers/userController')
 const utc = require('./controllers/utilityController')
 const ec = require('./controllers/equipmentController')
 const lc = require('./controllers/loanController')
+const pc = require('./controllers/proposalController')
 
 const express = require('express')
 const session = require('express-session')
@@ -75,3 +76,9 @@ app.post('/api/inverters', ec.createInverter)
 
 app.get('/api/loans', lc.getLoans)
 app.post('/api/loans', lc.createLoan)
+
+
+// ---- PROPOSALS CONTROLLERS ---- //
+
+app.post('/api/proposals', pc.createProposal)
+app.get('/api/proposals/:id', pc.getProposalById)

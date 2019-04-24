@@ -18,7 +18,7 @@ export class Utility extends Component {
             <span>Rate: ${utility_rate}/kWh</span>
           </div>
           <div>
-            <span>Area Pricing: {utility_ppw}/watt</span>
+            <span>Area Pricing: ${utility_ppw}/watt</span>
           </div>
           <button>Edit Utility</button>
         </div>

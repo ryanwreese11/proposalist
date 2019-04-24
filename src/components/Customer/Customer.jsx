@@ -11,7 +11,7 @@ export class Customer extends Component {
 
 
   customerView = () => {
-    const { cust_first_name, cust_last_name, cust_email, cust_address, cust_usage, cust_notes, user_appt_date, user_appt_time, utility_name, utility_rate, cust_progress, user_first_name, user_last_name } = this.props.customer
+    const { cust_email, cust_address, cust_usage, cust_notes, user_appt_date, user_appt_time, utility_name, utility_rate, cust_progress } = this.props.customer
     const multiply = (num1, num2) => {
       return Math.floor(num1 * num2)
     }
@@ -19,11 +19,7 @@ export class Customer extends Component {
       <div style={{ borderBottom: '1px solid black' }}>
 
         <div style={{ borderBottom: 'none' }}>
-          <div>
-            <h1>{cust_first_name} {cust_last_name}</h1>
-            <span>Sales Rep: </span>
-            <span>{user_first_name} {user_last_name}</span>
-          </div>
+
           <div>
             <span >Progress</span>
             <h5>{cust_progress}</h5>
@@ -50,23 +46,39 @@ export class Customer extends Component {
     // console.log(this.props)
 
 
-    const { cust_progress, cust_id } = this.props.customer
+
+    const { cust_first_name, cust_last_name, cust_progress, user_first_name, user_last_name, cust_id } = this.props.customer
 
 
 
     return (
       cust_progress === 'New' ? (
-        <Link to={`/usage/${cust_id}`}>
-          <div>{this.customerView()}</div>
-        </Link>
+        <div>
+          <h1>{cust_first_name} {cust_last_name}</h1>
+          <span>Sales Rep: </span>
+          <span>{user_first_name} {user_last_name}</span>
+          <Link to={`/usage/${cust_id}`}>
+            <div>{this.customerView()}</div>
+          </Link>
+        </div>
       ) : cust_progress === 'Building Proposal' ? (
-        <Link to={`/system/${cust_id}`}>
-          <div>{this.customerView()}</div>
-        </Link>
+        <div>
+          <h1>{cust_first_name} {cust_last_name}</h1>
+          <span>Sales Rep: </span>
+          <span>{user_first_name} {user_last_name}</span>
+          <Link to={`/system/${cust_id}`}>
+            <div>{this.customerView()}</div>
+          </Link>
+        </div>
       ) : cust_progress === 'Proposal' ? (
-        <Link to={`/proposal/${cust_id}`}>
-          <div>{this.customerView()}</div>
-        </Link>
+        <div>
+          <h1>{cust_first_name} {cust_last_name}</h1>
+          <span>Sales Rep: </span>
+          <span>{user_first_name} {user_last_name}</span>
+          <Link to={`/proposal/${cust_id}`}>
+            <div>{this.customerView()}</div>
+          </Link>
+        </div>
       ) : (
               <div></div>
             )

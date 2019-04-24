@@ -25,7 +25,7 @@ export class Utilities extends Component {
 
   getUtilities = () => {
     axios.get('/api/utilities').then(res => {
-      console.log(res.data)
+      
       this.setState({
         utilities: res.data
       })

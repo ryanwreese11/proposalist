@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import {Link} from 'react-router-dom'
 
 // import { Link } from 'react-router-dom'
 
@@ -27,10 +28,11 @@ export class CreateCustomer extends Component {
   }
 
   newCust = () => {
-    const { firstName, lastName, email, address, utility, notes, apptDate, apptTime, custProgress} = this.state
-    const res =  axios.post('/api/customers', { firstName, lastName, email, address, utility, notes, apptDate, apptTime, custProgress}).then(this.props.history.push('/'),(customers) => {
-      res.status(200).send(customers)
-    })
+    const { firstName, lastName, email, address, utility, notes, apptDate, apptTime, custProgress } = this.state
+    axios.post('/api/customers', { firstName, lastName, email, address, utility, notes, apptDate, apptTime, custProgress }).then(res => {
+      console.log(res.data)
+    }
+    )
   }
 
   getUtilities = () => {
@@ -72,11 +74,12 @@ export class CreateCustomer extends Component {
           <span>Appt Date: </span>
           <input onChange={(e) => this.setState({ apptDate: e.target.value })} value={this.state.apptDate} type="date"></input>
           <span>Time: </span>
-          <input onChange={(e) => this.setState({ apptTime: e.target.value })} value={this.state.apptTime}type="time"></input>
+          <input onChange={(e) => this.setState({ apptTime: e.target.value })} value={this.state.apptTime} type="time"></input>
         </div>
-        
+        <Link to='/'>
           <button onClick={() => this.newCust()}>Create Customer</button>
-        
+        </Link>
+
 
 
       </div>

@@ -93,7 +93,7 @@ export class Usage extends Component {
         <h2>Usage</h2>
 
         {
-           !this.state.edit ? (
+          !this.state.edit ? (
 
 
             <div>
@@ -129,9 +129,9 @@ export class Usage extends Component {
                   <span>Current Annual Usage: </span>
                   <input name="usage" onChange={this.handleChange} ></input> kWh
                 </div>
-                
-                  <button onClick={() => this.cancel()}>Save ></button>
-                
+
+                <button onClick={() => this.cancel()}>Save ></button>
+
               </div>
 
             )
