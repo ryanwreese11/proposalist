@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios';
+import { getData } from './../../ducks/userReducer'
+import { connect } from 'react-redux'
 
 
 
@@ -45,4 +47,6 @@ export class Login extends Component {
   }
 }
 
-export default Login
+const mapState = (reduxState) => reduxState
+
+export default connect(mapState, { getData })(Login)

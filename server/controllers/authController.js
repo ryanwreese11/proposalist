@@ -13,8 +13,8 @@ module.exports = {
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(password, salt);
     let newUserArr = await db.create_user([firstName, lastName, email, hash]);
-    req.session.user = { name: newUserArr[0].user_first_name, lastName: newUserArr[0].user_last_name, email: newUserArr[0].user_email, id: newUserArr[0].user_id }
-    res.status(200).send({
+    req.session.user = { name: newUserArr[0].user_first_name, lastName: newUserArr[0].user_last_name, email: newUserArr[0].user_email, id: newUserArr[0].user_id, loggedIn: newUserArr[0].loggedIn }
+    return res.status(200).send({
       message: 'Logged in.',
       userData: req.session.user,
       loggedIn: true
