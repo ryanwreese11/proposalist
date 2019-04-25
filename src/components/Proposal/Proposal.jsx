@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
+
+
 
 export class Proposal extends Component {
   constructor() {
@@ -12,21 +15,13 @@ export class Proposal extends Component {
   }
 
   componentDidMount = async () => {
-    this.getProposalById()
+    await this.getProposalById()
     console.log(this.props)
     await this.getCustomer()
 
   }
 
-  // to handle adding panels to the proposal
-  incrementPanelCount = () => {
-    this.setState()
-  }
 
-  // to handle removing panels to the proposal
-  decrementPanelCount = () => {
-    this.setState()
-  }
 
   getProposalById = () => {
     axios.get(`/api/proposals/${this.props.match.params.cust_id}`).then(res => {
@@ -50,26 +45,39 @@ export class Proposal extends Component {
         custProgress: res.data[0].cust_progress
 
       })
-      console.log(res.data[0])
-
+      
     }).catch(err => {
       console.log('asdf', err)
     })
   }
-
+  
   render() {
+    console.log(this.state)
 
     let mappedProposals = this.state.proposals.map((proposal, i) => {
-      return <span key={i} value={proposal.mod_name}>{`${proposal.prop_id} ${proposal.prop_size / 1000}kW ${proposal.loan_name}`}</span>
+      return <div key={i} value={module.mod_name}><div style={{ borderBottom: '1px solid black' }}>
+        <ul>
+          <li>Cost: ${proposal.prop_system_cost}</li>
+          <li>Size: {proposal.prop_size}</li>
+          <li>Production: {proposal.prop_production} kWh/annually</li>
+          <li>Loan: {proposal.loan_name}</li>
+          <li>ID: {proposal.prop_id} </li>
+        </ul>
+        <Link to={`/proposalview/${proposal.prop_id}`}>
+          <button>View Proposal</button>
+        </Link>
+      </div>
+      </div>
     })
 
     return (
       <div>
-        <h1>Proposal</h1>
-        <h2>{this.state.firstName} {this.state.lastName}</h2>
-        <div>
-          {mappedProposals}
-        </div>
+        <h3>Proposals</h3>
+        <Link to={`/system/${this.props.match.params.cust_id}`}>
+        <button>New Proposal</button>
+        </Link>
+        {mappedProposals}
+
       </div>
     )
   }

@@ -12,6 +12,7 @@ import Equipment from './components/Equipment/Equipment'
 import LoanProducts from './components/LoanProducts/LoanProducts'
 import Proposal from './components/Proposal/Proposal'
 import System from './components/System/System'
+import ProposalView from './components/ProposalView/ProposalView'
 
 
 
@@ -28,5 +29,6 @@ export default (
     <Route path='/equipment' component={Equipment} />
     <Route path='/loans' component={LoanProducts} />
     <Route path='/system/:cust_id' component={System} />
+    <Route path='/proposalview/:prop_id' component={ProposalView} />
   </Switch>
 )

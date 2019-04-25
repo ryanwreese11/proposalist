@@ -17,7 +17,7 @@ export class Dashboard extends Component {
 
   componentDidMount = async () => {
     await this.props.getData()
-    console.log(this.props)
+    // console.log(this.props)
     if (this.props.user.rep) {
       this.getCustomersById(this.props.user.id)
     } else {
@@ -45,7 +45,7 @@ export class Dashboard extends Component {
 
 
   render() {
-    console.log(this.props)
+    // console.log(this.props)
     return (
       <div>
         <h1>Dashboard</h1>

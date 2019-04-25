@@ -82,3 +82,4 @@ app.post('/api/loans', lc.createLoan)
 
 app.post('/api/proposals', pc.createProposal)
 app.get('/api/proposals/:id', pc.getProposalById)
+app.get('/api/proposalview/:prop_id', pc.getProposalByPropId)

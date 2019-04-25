@@ -31,6 +31,7 @@ export class System extends Component {
       custId: '',
       propSigned: false,
       custProgress: 'Proposal',
+      propRatio: ''
 
 
     }
@@ -47,8 +48,8 @@ export class System extends Component {
   }
 
   newProposal = () => {
-    const { custId, utility, moduleName, inverterName, loanName, production, systemCost, systemSize, propSigned } = this.state
-    axios.post('/api/proposals', { custId, utility, moduleName, inverterName, loanName, production, systemCost, systemSize, propSigned }).then(res => {
+    const { custId, utility, moduleName, inverterName, loanName, production, systemCost, systemSize, propSigned, moduleAmount, propRatio } = this.state
+    axios.post('/api/proposals', { custId, utility, moduleName, inverterName, loanName, production, systemCost, systemSize, propSigned, moduleAmount, propRatio }).then(res => {
 
     })
   }
@@ -133,9 +134,16 @@ export class System extends Component {
     })
   }
   setSystemCost = (num1, num2) => {
-    let total2 = Number(num1 * num2)
+    let total2 = Math.floor(Number(num1 * num2).toFixed(2))
     this.setState({
       systemCost: total2
+    })
+  }
+
+  setPropRatio = (num1, num2) => {
+    let ratio = num1 / num2 * 1000
+    this.setState({
+      propRatio: ratio
     })
   }
 
@@ -194,7 +202,9 @@ export class System extends Component {
             {mappedModules}
           </select>
           <select name="moduleSize" onChange={this.handleChange}>
-            {mappedModules}
+            <option></option>
+            <option>300</option>
+            <option>320</option>
           </select>
 
 
@@ -228,7 +238,7 @@ export class System extends Component {
           <select name="loanName" onChange={this.handleChange}>
             {mappedLoans}
           </select>
-          <button onClick={() => this.setSystemCost()}>Calculate System Size</button>
+          <button onClick={() => {this.setSystemCost(this.state.systemSize, this.state.ppw); this.setPropRatio(this.state.production, this.state.systemSize)}}>Calculate System Size</button>
           {/* <select name="loanTerm" onChange={this.handleChange}>
             <option>12</option>
             <option>20</option>
@@ -244,6 +254,7 @@ export class System extends Component {
     )
   }
 }
+
 
 const mapState = (reduxState) => reduxState
 

@@ -8,11 +8,11 @@ import { getData } from './../../ducks/userReducer'
 
 export class Customer extends Component {
 
-
-
+  
   customerView = () => {
     const { cust_email, cust_address, cust_usage, cust_notes, user_appt_date, user_appt_time, utility_name, utility_rate, cust_progress } = this.props.customer
     const multiply = (num1, num2) => {
+      // console.log(this.props)
       return Math.floor(num1 * num2)
     }
     return (

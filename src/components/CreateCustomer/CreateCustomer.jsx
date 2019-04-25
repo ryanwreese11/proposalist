@@ -64,6 +64,7 @@ export class CreateCustomer extends Component {
           <input onChange={(e) => this.setState({ address: e.target.value })} value={this.state.address} type='text'></input>
           <span>Utility: </span>
           <select onChange={(e) => this.setState({ utility: e.target.value })} value={this.state.utility}>
+            <option ></option>
             {mappedUtilities}
 
           </select>
