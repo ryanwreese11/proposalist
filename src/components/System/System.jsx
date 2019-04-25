@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { getData } from './../../ducks/userReducer'
 import { Link } from 'react-router-dom'
 
+
 export class System extends Component {
   constructor(props) {
     super(props)
@@ -49,7 +50,7 @@ export class System extends Component {
 
   newProposal = () => {
     const { custId, utility, moduleName, inverterName, loanName, production, systemCost, systemSize, propSigned, moduleAmount, propRatio } = this.state
-    axios.post('/api/proposals', { custId, utility, moduleName, inverterName, loanName, production, systemCost, systemSize, propSigned, moduleAmount, propRatio }).then(res => {
+    axios.post(`/api/proposals`, { custId, utility, moduleName, inverterName, loanName, production, systemCost, systemSize, propSigned, moduleAmount, propRatio }).then(res => {
 
     })
   }
@@ -92,7 +93,7 @@ export class System extends Component {
   }
 
   getModules = () => {
-    axios.get('/api/modules').then(res => {
+    axios.get(`/api/modules`).then(res => {
       console.log(res.data)
       this.setState({
         modules: res.data
@@ -102,7 +103,7 @@ export class System extends Component {
   }
 
   getInverters = () => {
-    axios.get('/api/inverters').then(res => {
+    axios.get(`/api/inverters`).then(res => {
       console.log(res.data)
       this.setState({
         inverters: res.data
@@ -111,7 +112,7 @@ export class System extends Component {
   }
 
   getLoans = () => {
-    axios.get('/api/loans').then(res => {
+    axios.get(`/api/loans`).then(res => {
       console.log(res.data)
       this.setState({
         loans: res.data

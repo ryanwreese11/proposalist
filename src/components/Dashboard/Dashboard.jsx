@@ -5,6 +5,7 @@ import { getData } from './../../ducks/userReducer'
 import Customer from '../Customer/Customer'
 import axios from 'axios'
 
+
 export class Dashboard extends Component {
   constructor() {
     super()
@@ -26,7 +27,7 @@ export class Dashboard extends Component {
   }
 
   getCustomers = async () => {
-    await axios.get('/api/customers').then(res => {
+    await axios.get(`/api/customers`).then(res => {
       this.setState({
         customers: res.data
       })
@@ -46,6 +47,7 @@ export class Dashboard extends Component {
 
   render() {
     // console.log(this.props)
+    
     return (
       <div>
         <h1>Dashboard</h1>

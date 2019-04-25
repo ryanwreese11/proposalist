@@ -15,6 +15,7 @@ const session = require('express-session')
 const massive = require('massive')
 
 const app = express()
+app.use( express.static( `${__dirname}/../build` ) );
 
 app.use(express.json())
 

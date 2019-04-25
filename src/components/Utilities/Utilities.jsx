@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { getData } from './../../ducks/userReducer'
 
 
+
 export class Utilities extends Component {
   constructor() {
     super()
@@ -24,7 +25,7 @@ export class Utilities extends Component {
   }
 
   getUtilities = () => {
-    axios.get('/api/utilities').then(res => {
+    axios.get(`/api/utilities`).then(res => {
       
       this.setState({
         utilities: res.data
@@ -53,7 +54,7 @@ export class Utilities extends Component {
 
   async createUtility() {
     const {utilityName, utilityLocation, utilityRate, utilityPpw} = this.state
-     await axios.post('/api/utilities', {utilityName, utilityLocation, utilityRate, utilityPpw})
+     await axios.post(`/api/utilities`, {utilityName, utilityLocation, utilityRate, utilityPpw})
     .then(this.setState({edit: false}))
     
       await this.getUtilities()

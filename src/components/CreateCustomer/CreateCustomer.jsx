@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import {Link} from 'react-router-dom'
 
+
 // import { Link } from 'react-router-dom'
 
 export class CreateCustomer extends Component {
@@ -29,14 +30,14 @@ export class CreateCustomer extends Component {
 
   newCust = () => {
     const { firstName, lastName, email, address, utility, notes, apptDate, apptTime, custProgress } = this.state
-    axios.post('/api/customers', { firstName, lastName, email, address, utility, notes, apptDate, apptTime, custProgress }).then(res => {
+    axios.post(`/api/customers`, { firstName, lastName, email, address, utility, notes, apptDate, apptTime, custProgress }).then(res => {
       console.log(res.data)
     }
     )
   }
 
   getUtilities = () => {
-    axios.get('/api/utilities').then(res => {
+    axios.get(`/api/utilities`).then(res => {
       console.log(res.data)
       this.setState({
         utilities: res.data

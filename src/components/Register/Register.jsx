@@ -5,6 +5,8 @@ import { connect } from 'react-redux'
 import User from './../User/User'
 
 
+
+
 export class Register extends Component {
 
   constructor(props) {
@@ -29,14 +31,14 @@ export class Register extends Component {
 
   async register() {
     const { firstName, lastName, email, password, isAdmin, isRep } = this.state
-    const res = await axios.post('/auth/register', { firstName, lastName, email, password, isAdmin, isRep })
+    const res = await axios.post(`/auth/register`, { firstName, lastName, email, password, isAdmin, isRep })
     if (res.data.loggedIn) this.props.history.push('/')
     else alert(res.data.message)
   }
 
   async createUser() {
     const { firstName, lastName, email, password, isAdmin, isRep } = this.state
-    await axios.post('/api/users', { firstName, lastName, email, password, isAdmin, isRep }).then(this.setState({ edit: false }))
+    await axios.post(`/api/users`, { firstName, lastName, email, password, isAdmin, isRep }).then(this.setState({ edit: false }))
 
   }
 
@@ -54,7 +56,7 @@ export class Register extends Component {
   }
 
   getUsers() {
-    axios.get('/api/users').then(res => {
+    axios.get(`/api/users`).then(res => {
       this.setState({
         accounts: res.data
       })

@@ -6,6 +6,7 @@ import { getData } from './../../ducks/userReducer'
 import Inverters from './Inverters'
 import Modules from './Modules'
 
+
 export class Equipment extends Component {
   constructor(props) {
     super(props)
@@ -30,7 +31,7 @@ export class Equipment extends Component {
   }
 
   getModules = () => {
-    axios.get('/api/modules').then(res => {
+    axios.get(`/api/modules`).then(res => {
       console.log(res.data)
       this.setState({
         modules: res.data
@@ -39,7 +40,7 @@ export class Equipment extends Component {
   }
 
   getInverters = () => {
-    axios.get('/api/inverters').then(res => {
+    axios.get(`/api/inverters`).then(res => {
       console.log(res.data)
       this.setState({
         inverters: res.data
@@ -49,14 +50,14 @@ export class Equipment extends Component {
 
   async createModule() {
     const { modName, modSize } = this.state
-    axios.post('/api/modules', { modName, modSize })
+    axios.post(`/api/modules`, { modName, modSize })
     .then(this.getModules())
      .then(this.setState({ modCreate: false }))
   }
 
   async createInverter() {
     const { invName, invType } = this.state
-    axios.post('/api/inverters', { invName, invType })
+    axios.post(`/api/inverters`, { invName, invType })
       .then(this.setState({ invCreate: false }))
       .then(this.props.history.push('/equipment'))
   }

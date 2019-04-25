@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 
 
 
+
 export class Proposal extends Component {
   constructor() {
     super()

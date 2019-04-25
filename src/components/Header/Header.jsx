@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { getData } from './../../ducks/userReducer'
+require('dotenv').config()
+const {REACT_APP_LOGOUT} = process.env
 
 
 
@@ -49,7 +51,7 @@ export class Header extends Component {
                     <button>Users</button>
                   </Link>
                 </div>
-                <a href="http://localhost:5678/logout">
+                <a href={REACT_APP_LOGOUT}>
                   <button>Logout</button>
                 </a>
               </div>
@@ -58,7 +60,7 @@ export class Header extends Component {
                 <div >
                   Hello {name}
                 </div>
-                <a href="http://localhost:5678/logout">
+                <a href={process.env.REACT_APP_LOGOUT}>
                   <button>Logout</button>
                 </a>
               </div>

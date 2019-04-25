@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { getData } from './../../ducks/userReducer'
 import Chart from './../Chart/Chart'
 
+
 export class ProposalView extends Component {
 
   constructor() {

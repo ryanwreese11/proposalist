@@ -1,5 +1,6 @@
 import axios from 'axios'
 
+
 const initialState = {
   user: {},
 }
@@ -9,7 +10,7 @@ const GET_DATA = 'GET_DATA'
 
 
 export function getData() {
-  let data = axios.get('/auth/user-data').then(res => res.data)
+  let data = axios.get(`/auth/user-data`).then(res => res.data)
   return {
     type: GET_DATA,
     payload: data

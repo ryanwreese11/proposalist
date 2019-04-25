@@ -5,6 +5,7 @@ import { getData } from '../../ducks/userReducer'
 import Loan from '../Loan/Loan'
 
 
+
 export class LoanProucts extends Component {
   constructor(props) {
     super(props)
@@ -26,7 +27,7 @@ export class LoanProucts extends Component {
   }
 
   getLoans = () => {
-    axios.get('/api/loans').then(res => {
+    axios.get(`/api/loans`).then(res => {
       console.log(res.data)
       this.setState({
         loans: res.data
@@ -55,7 +56,7 @@ export class LoanProucts extends Component {
 
   async createLoan() {
     const { loanName, loanTerm, interest, prePmtFactor, postPmtFactor } = this.state
-    await axios.post('/api/loans', { loanName, loanTerm, interest, prePmtFactor, postPmtFactor })
+    await axios.post(`/api/loans`, { loanName, loanTerm, interest, prePmtFactor, postPmtFactor })
       .then(this.setState({ edit: false }))
 
     await this.getLoans()

@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-
 import { Link } from 'react-router-dom'
 import axios from 'axios';
+
+
 
 export class Login extends Component {
   constructor(props) {
@@ -15,7 +16,7 @@ export class Login extends Component {
 
   async login() {
     const { email, password } = this.state
-    const res = await axios.post('/auth/login', { email, password })
+    const res = await axios.post(`/auth/login`, { email, password })
     if (res.data.loggedIn) this.props.history.push('/')
     else alert(res.data.message)
     console.log(res.data.message)

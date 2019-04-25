@@ -1,4 +1,6 @@
 const bcrypt = require('bcryptjs')
+const {REACT_APP_LOGIN} =process.env
+require('dotenv').config()
 
 module.exports = {
   register: async (req, res) => {
@@ -47,6 +49,6 @@ module.exports = {
 
   logout(req, res) {
     req.session.destroy();
-    res.redirect('http://localhost:3000/#/login')
+    res.redirect(REACT_APP_LOGIN)
   }
 }
