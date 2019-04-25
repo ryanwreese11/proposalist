@@ -60,7 +60,7 @@ export class Header extends Component {
                 <div >
                   Hello {name}
                 </div>
-                <a href={process.env.REACT_APP_LOGOUT}>
+                <a href={REACT_APP_LOGOUT}>
                   <button>Logout</button>
                 </a>
               </div>
