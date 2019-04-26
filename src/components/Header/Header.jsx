@@ -52,7 +52,7 @@ export class Header extends Component {
                       <button>Users</button>
                     </Link>
                   </div>
-                  <a href={REACT_APP_LOGIN}>
+                  <a href={REACT_APP_LOGOUT}>
                     <button>Logout</button>
                   </a>
                 </div>
@@ -63,7 +63,7 @@ export class Header extends Component {
                   Hello {name}
                 </div>
                 <div className="headerButtons">
-                  <a href={REACT_APP_LOGIN}>
+                  <a href={REACT_APP_LOGOUT}>
                     <button>Logout</button>
                   </a>
                 </div>
