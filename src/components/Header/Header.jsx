@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { getData } from './../../ducks/userReducer'
 require('dotenv').config()
-const { REACT_APP_LOGIN} = process.env
+const { REACT_APP_LOGOUT} = process.env
 
 
 
