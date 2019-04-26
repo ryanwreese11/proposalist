@@ -11,6 +11,7 @@ export class Dashboard extends Component {
     super()
     this.state = {
       customers: []
+
     }
   }
 
@@ -34,6 +35,8 @@ export class Dashboard extends Component {
     })
   }
 
+
+
   getCustomersById = async () => {
     let { id } = this.props.user
 
@@ -45,23 +48,78 @@ export class Dashboard extends Component {
   }
 
 
+
+
   render() {
-    // console.log(this.props)
-    
+
+    let newCustomers = this.state.customers.filter(item => {
+      return item.cust_progress === 'New'
+    }).map(item => {
+      return <div>{`${item.cust_progress}`}</div>
+    })
+
+    let buildingCustomers = this.state.customers.filter(item => {
+      return item.cust_progress === 'Building Proposal'
+    }).map(item => {
+      return <div>{`${item.cust_progress}`}</div>
+    })
+
+    let proposalCustomers = this.state.customers.filter(item => {
+      return item.cust_progress === 'Proposal'
+    }).map(item => {
+      return <div>{`${item.cust_progress}`}</div>
+    })
+
+    let soldCustomers = this.state.customers.filter(item => {
+      return item.cust_progress === 'Sold'
+    }).map(item => {
+      return <div>{`${item.cust_progress}`}</div>
+    })
+
+
+
     return (
       <div>
-        <h1>Dashboard</h1>
-
-        <Link to='/newcust'>
-          <button>New Customer</button>
-        </Link>
-
-        {this.state.customers.map(item => {
-          return <Customer key={item.cust_id} customer={item}
-            customers={this.state.customers}
-          />
-        })}
-
+        <div className="dashboard">
+          <div>
+            <h1>Dashboard</h1>
+          </div>
+          <div className="progressNums">
+            <div>
+              <div>
+                <div>New Customers</div>
+              </div>
+              <div>
+                <span>{newCustomers.length}</span>
+              </div>
+            </div>
+            <span>></span>
+            <div>
+              <div>Proposal in Progress</div>
+              <span>{buildingCustomers.length}</span>
+            </div>
+            <span>></span>
+            <div>
+              <div>Completed Proposals</div>
+              <span>{proposalCustomers.length}</span>
+            </div>
+            <span>></span>
+            <div>
+              <div>Signed Customers</div>
+              <span>{soldCustomers.length}</span>
+            </div>
+          </div>
+          <Link to='/newcust'>
+            <button>New Customer</button>
+          </Link>
+        </div>
+        <div className="customerWrapper">
+          {this.state.customers.map(item => {
+            return <Customer key={item.cust_id} customer={item}
+              customers={this.state.customers}
+            />
+          })}
+        </div>
       </div>
     )
   }

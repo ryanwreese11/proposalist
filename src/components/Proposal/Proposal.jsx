@@ -46,28 +46,29 @@ export class Proposal extends Component {
         custProgress: res.data[0].cust_progress
 
       })
-      
+
     }).catch(err => {
       console.log('asdf', err)
     })
   }
-  
+
   render() {
     console.log(this.state)
 
     let mappedProposals = this.state.proposals.map((proposal, i) => {
-      return <div key={i} value={module.mod_name}><div style={{ borderBottom: '1px solid black' }}>
-        <ul>
-          <li>Cost: ${proposal.prop_system_cost}</li>
-          <li>Size: {proposal.prop_size}</li>
-          <li>Production: {proposal.prop_production} kWh/annually</li>
-          <li>Loan: {proposal.loan_name}</li>
-          <li>ID: {proposal.prop_id} </li>
-        </ul>
-        <Link to={`/proposalview/${proposal.prop_id}`}>
-          <button>View Proposal</button>
-        </Link>
-      </div>
+      return <div className="items" key={i} value={module.mod_name}>
+        <div >
+          <ul>
+            <li>Cost: ${proposal.prop_system_cost}</li>
+            <li>Size: {proposal.prop_size}</li>
+            <li>Production: {proposal.prop_production} kWh/annually</li>
+            <li>Loan: {proposal.loan_name}</li>
+            <li>ID: {proposal.prop_id} </li>
+          </ul>
+          <Link to={`/proposalview/${proposal.prop_id}`}>
+            <button>View Proposal</button>
+          </Link>
+        </div>
       </div>
     })
 
@@ -75,7 +76,7 @@ export class Proposal extends Component {
       <div>
         <h3>Proposals</h3>
         <Link to={`/system/${this.props.match.params.cust_id}`}>
-        <button>New Proposal</button>
+          <button>New Proposal</button>
         </Link>
         {mappedProposals}
 

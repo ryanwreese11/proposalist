@@ -31,14 +31,14 @@ export class CreateCustomer extends Component {
   newCust = () => {
     const { firstName, lastName, email, address, utility, notes, apptDate, apptTime, custProgress } = this.state
     axios.post(`/api/customers`, { firstName, lastName, email, address, utility, notes, apptDate, apptTime, custProgress }).then(res => {
-      console.log(res.data)
+      // console.log(res.data)
     }
     )
   }
 
   getUtilities = () => {
     axios.get(`/api/utilities`).then(res => {
-      console.log(res.data)
+      // console.log(res.data)
       this.setState({
         utilities: res.data
       })

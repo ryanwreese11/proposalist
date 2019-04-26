@@ -1,0 +1,152 @@
+*{
+  font-family: 'Stratos-Regular';
+  box-sizing: border-box;
+}
+
+
+.items {
+  display:flex;
+  flex-direction: column;
+  color: rgb(58, 57, 57);
+  background-color: rgb(235, 235, 244);
+  text-decoration: none;
+  margin: 1.5rem;
+  border-bottom: 1px solid black;
+  padding: .5rem
+  
+}
+
+.items2 {
+  display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	align-items: baseline;
+	align-content: stretch;
+
+}
+
+.progressButtons {
+  width: 65%;
+  display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	align-items: baseline;
+	align-content: stretch;
+}
+
+
+
+.completed {
+  background: none;
+  border: none;
+  
+}
+
+.inProgress {
+  background: none;
+  border: none;
+  color: grey;
+  cursor: auto
+}
+
+header {
+  display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	align-items: baseline;
+  align-content: stretch;
+  padding: 1.5rem;
+  background-color: rgba(143, 141, 141);
+  position: fixed;
+  width: 100%
+
+
+}
+
+.headerRight {
+  display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: flex-start;
+	align-items: flex-end;
+  align-content: space-between;
+  width: 100%;
+  padding: 
+  
+  
+}
+
+.headerButtons {
+  display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	align-items: baseline;
+  align-content: stretch;
+  width: 150%;
+  
+  
+  
+}
+.headerButtons button {
+
+  font-size: 1.5rem
+}
+header button {
+  font-size: 3rem
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  
+  color: grey;
+  
+}
+
+.dashboard {
+  display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: center;
+  align-content: stretch;
+  position: fixed;
+  width: 100%;
+  padding-top: 0rem;
+  background-color: rgba(255, 255, 255, 0.941);
+  margin-top: 8rem
+
+}
+
+.progressNums {
+  display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-around;
+	align-items: center;
+  align-content: stretch;
+  width: 80%;
+  text-align: center
+  
+}
+
+
+.customerWrapper {
+  background-color: rgb(206, 203, 203);
+  padding-top: 18rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+
+}
+
+.login {
+  padding: 20rem
+}

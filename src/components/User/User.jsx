@@ -13,7 +13,7 @@ export class User extends Component {
     console.log(this.props)
     return (
       <div>
-        <div style={{ borderBottom: '1px solid black' }}>
+        <div  className="items" style={{ borderBottom: '1px solid black' }}>
           <div>
             <h3>{user_first_name} {user_last_name}</h3>
           </div>

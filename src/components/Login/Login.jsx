@@ -27,7 +27,7 @@ export class Login extends Component {
 
   render() {
     return (
-      <div>
+      <div className="login">
         <div>
           <h1>Login</h1>
           <span>Email</span>

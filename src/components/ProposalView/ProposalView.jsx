@@ -156,7 +156,7 @@ export class ProposalView extends Component {
           <div name="systemSize" >System Size: {systemSize / 1000} kW</div>
           <div>{moduleCount} {module} watts</div>
           <button onClick={() => {this.incrementModuleCount();this.setSystemSize(this.state.moduleCount, this.state.moduleSize)}}>Add Panel</button>
-          <button onClick={() => this.decrementModuleCount()}>Remove Panel</button>
+          <button onClick={() => {this.decrementModuleCount();this.setSystemSize(this.state.moduleCount, this.state.moduleSize)}}>Remove Panel</button>
           <div>Inverter: {inverter}</div>
           <div > {Math.floor(propRatio * systemSize / 1000)} kWh/Annually</div>
           <div>Offset: {Math.floor(divide((propRatio * systemSize / 1000), usage) * 100)}%</div>

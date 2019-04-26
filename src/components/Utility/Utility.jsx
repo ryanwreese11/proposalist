@@ -9,7 +9,7 @@ export class Utility extends Component {
 
     return (
       <div>
-        <div style={{ borderBottom: '1px solid black' }}>
+        <div className="items" style={{ borderBottom: '1px solid black' }}>
           <div>
             <h3>{utility_name}</h3>
           </div>

@@ -7,7 +7,7 @@ export class Modules extends Component {
     const { mod_name, mod_size } = this.props.module
 
     return (
-      <div style={{ borderBottom: '1px solid black' }}>
+      <div className="items" style={{ borderBottom: '1px solid black' }}>
         <ul>
           <li>{mod_name}</li>
           <li>Module Size: {mod_size} watts</li>

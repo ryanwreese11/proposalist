@@ -6,4 +6,5 @@ join inverter i on i.inv_id = p.inv_id
 join utility u on u.utility_id = p.utility_id
 join users us on us.user_id = p.user_id
 join loan_product l on l.loan_id = p.loan_id
-where c.cust_id = $1;
+where c.cust_id = $1
+order by p.prop_id desc;

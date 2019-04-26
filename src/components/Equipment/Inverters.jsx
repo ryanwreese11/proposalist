@@ -7,7 +7,7 @@ export class Inverters extends Component {
     const { inv_name, inv_type } = this.props.inverter
 
     return (
-      <div style={{ borderBottom: '1px solid black' }}>
+      <div className="items" style={{ borderBottom: '1px solid black' }}>
         <ul>
           <li>{inv_name}</li>
           <li>{inv_type}</li>

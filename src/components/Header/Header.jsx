@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { getData } from './../../ducks/userReducer'
 require('dotenv').config()
-const {REACT_APP_LOGOUT} = process.env
+const { REACT_APP_LOGOUT } = process.env
 
 
 
@@ -18,54 +18,58 @@ export class Header extends Component {
     console.log(this.props)
     const { name, id, admin } = this.props.user
     return (
-      <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+      <header >
         <div>
           <Link to='/'>
-            <h1>Proposalist</h1>
+            <button>Proposalist</button>
           </Link>
         </div>
-        <div>
+        <div >
           {
             id && admin ? (
-              <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+              <div className="headerRight">
                 <div >
                   <span>Admin User, {name} </span>
                 </div>
-                <div>
-                  <Link to='/loans'>
-                    <button>Loan Products</button>
-                  </Link>
+                <div className="headerButtons">
+                  <div>
+                    <Link to='/loans'>
+                      <button>Loan Products</button>
+                    </Link>
+                  </div>
+                  <div>
+                    <Link to="/equipment">
+                      <button>Equipment</button>
+                    </Link>
+                  </div>
+                  <div>
+                    <Link to="/utilities">
+                      <button>Utilities</button>
+                    </Link>
+                  </div>
+                  <div>
+                    <Link to="/register">
+                      <button>Users</button>
+                    </Link>
+                  </div>
+                  <a href={REACT_APP_LOGOUT}>
+                    <button>Logout</button>
+                  </a>
                 </div>
-                <div>
-                  <Link to="/equipment">
-                    <button>Equipment</button>
-                  </Link>
-                </div>
-                <div>
-                  <Link to="/utilities">
-                    <button>Utilities</button>
-                  </Link>
-                </div>
-                <div>
-                  <Link to="/register">
-                    <button>Users</button>
-                  </Link>
-                </div>
-                <a href={REACT_APP_LOGOUT}>
-                  <button>Logout</button>
-                </a>
               </div>
             ) : id ? (
-              <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+              <div >
                 <div >
                   Hello {name}
                 </div>
-                <a href={REACT_APP_LOGOUT}>
-                  <button>Logout</button>
-                </a>
+                <div className="headerButtons">
+                  <a href={REACT_APP_LOGOUT}>
+                    <button>Logout</button>
+                  </a>
+                </div>
               </div>
             ) : (
-                  <div>
+                  <div className="headerButtons">
                     <Link to='/login'>
                       <button>Login</button>
                     </Link>
@@ -74,7 +78,7 @@ export class Header extends Component {
           }
 
         </div>
-      </div>
+      </header>
     )
   }
 }

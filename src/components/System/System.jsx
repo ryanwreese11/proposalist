@@ -155,30 +155,17 @@ export class System extends Component {
     let mappedModules = this.state.modules.map((module, i) => {
       return <option key={i} value={module.mod_name}>{`${module.mod_name}`}</option>
     })
-    // let mappedModuleSize = this.state.modules.map((module, i) => {
-    //   return <option key={i}>{`${module.mod_size} watt`}</option>
-    // })
+
 
     let mappedInverters = this.state.inverters.map((inverter, i) => {
       return <option key={i}>{`${inverter.inv_name}`}</option>
     })
-    // let mappedInverterType = this.state.inverters.map((inverter, i) => {
-    //   return <option key={i}>{`${inverter.inv_type}`}</option>
-    // })
+
 
     let mappedLoans = this.state.loans.map((loans, i) => {
       return <option key={i}>{`${loans.loan_name}`}</option>
 
     })
-    // console.log(this.state.loans[i].loan_name)
-    // let mappedLoanTerm = this.state.loans.map((loans, i) => {
-    //   return <option key={i}>{`${loans.loan_term} yr`}</option>
-    // })
-    // let mappedLoanInterest = this.state.loans.map((loans, i) => {
-    //   return <option key={i}>{` ${loans.loan_interest}% interest`}</option>
-    // })
-
-
 
     console.log(this.state)
 
@@ -195,6 +182,14 @@ export class System extends Component {
         <span name="systemCost">System Cost ${this.state.systemCost}.00</span>
         <div>
           <div>
+          <div>
+            <div>
+              <span> Usage Offset: {Math.floor(this.state.production / this.state.usage * 100)}%</span>
+            </div>
+            <span>Production from Design Tool: </span>
+            <input name="production" placeholder="production" onChange={this.handleChange}></input>
+            <span> kWh/annually</span>
+          </div>
             <span>Modules: </span>
             <input name='moduleAmount' onChange={this.handleChange} placeholder="count"></input>
           </div>
@@ -210,10 +205,7 @@ export class System extends Component {
 
 
 
-          {/* <select name="moduleSize" onChange={this.handleChange}>
-            <option>300</option>
-            <option>320</option>
-          </select> */}
+         
           <button onClick={() => this.setSystemSize(this.state.moduleAmount, this.state.moduleSize)}>Calculate System Size</button>
           <div>
             <span>Inverter: </span>
@@ -222,31 +214,16 @@ export class System extends Component {
             <option></option>
             {mappedInverters}
           </select>
-          {/* <select name="inverterType" onChange={this.handleChange}>
-            {mappedInverterType}
-          </select> */}
-          <div>
-            <span>Production from Design Tool: </span>
-            <input name="production" placeholder="production" onChange={this.handleChange}></input>
-            <span> kWh/annually</span>
-            <div>
-              <span> Usage Offset: {Math.floor(this.state.production / this.state.usage * 100)}%</span>
-            </div>
-          </div>
+      
           <div>
             <span>Financial Product: </span>
           </div>
           <select name="loanName" onChange={this.handleChange}>
+            <option></option>
             {mappedLoans}
           </select>
           <button onClick={() => {this.setSystemCost(this.state.systemSize, this.state.ppw); this.setPropRatio(this.state.production, this.state.systemSize)}}>Calculate System Size</button>
-          {/* <select name="loanTerm" onChange={this.handleChange}>
-            <option>12</option>
-            <option>20</option>
-          </select> */}
-          {/* <select name="loanInterest" onChange={this.handleChange}>
-            {mappedLoanInterest}
-          </select> */}
+   
         </div>
         <Link to={`/proposal/${this.props.match.params.cust_id}`}>
           <button onClick={() => { this.newProposal(); this.updateCustomer() }} >Create Proposal</button>
