@@ -8,10 +8,10 @@ export class Modules extends Component {
 
     return (
       <div className="items" style={{ borderBottom: '1px solid black' }}>
-        <ul>
-          <li>{mod_name}</li>
-          <li>Module Size: {mod_size} watts</li>
-        </ul>
+        <div>
+          <span>{mod_name}</span>
+          <span>Module Size: {mod_size} watts</span>
+        </div>
         <div>
           <button>Edit Module</button>
         </div>

@@ -13,11 +13,11 @@ export class Utility extends Component {
           <div>
             <h3>{utility_name}</h3>
           </div>
-          <ul>
-            <li>{utility_location}</li>
-            <li>Rate: ${utility_rate}/kWh</li>
-            <li>Area Pricing: ${utility_ppw}/watt</li>
-          </ul>
+          <div>
+            <span>{utility_location}</span>
+            <span>Rate: ${utility_rate}/kWh</span>
+            <span>Area Pricing: ${utility_ppw}/watt</span>
+          </div>
           
           <button>Edit Utility</button>
         </div>

@@ -17,11 +17,11 @@ export class User extends Component {
           <div>
             <h3>{user_first_name} {user_last_name}</h3>
           </div>
-          <ul>
-            <li>{user_id}</li>
-            <li>Email: {user_email}</li>
+          <div>
+            <span>{user_id}</span>
+            <span>Email: {user_email}</span>
             
-              <li>Account type:  
+              <span>Account type:  
               {
                 is_admin ? (
                   <span>Admin</span>
@@ -31,9 +31,9 @@ export class User extends Component {
                       <span>Designer</span>
                     )
               }
-              </li>
+              </span>
             
-          </ul>
+          </div>
           <button>Edit User</button>
         </div>
       </div>

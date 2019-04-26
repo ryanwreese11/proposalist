@@ -8,11 +8,11 @@ export class Loan extends Component {
     const { loan_name, loan_term, loan_interest } = this.props.loan
     return (
       <div className="items" style={{borderBottom: '1px solid black' }}>
-        <ul>
-          <li>{loan_name}</li>
-          <li>Term: {loan_term} years</li>
-          <li>Interest Rate: {loan_interest}%</li>
-        </ul>
+        <div>
+          <span>{loan_name}</span>
+          <span>Term: {loan_term} years</span>
+          <span>Interest Rate: {loan_interest}%</span>
+        </div>
         <div>
           <button>Edit</button>
         </div>

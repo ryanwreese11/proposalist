@@ -1,5 +1,5 @@
 *{
-  
+  font-family: 'Stratos-Regular';
   box-sizing: border-box;
 }
 
@@ -148,5 +148,5 @@ button:hover {
 }
 
 .login {
-  padding: 20rem
+  
 }

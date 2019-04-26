@@ -8,10 +8,10 @@ export class Inverters extends Component {
 
     return (
       <div className="items" style={{ borderBottom: '1px solid black' }}>
-        <ul>
-          <li>{inv_name}</li>
-          <li>{inv_type}</li>
-        </ul>
+        <div>
+          <span>{inv_name}</span>
+          <span>{inv_type}</span>
+        </div>
         <div>
           <button>Edit Inverter</button>
         </div>
