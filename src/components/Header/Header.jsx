@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { getData } from './../../ducks/userReducer'
 require('dotenv').config()
-const { REACT_APP_LOGOUT } = process.env
+const { REACT_APP_LOGIN} = process.env
 
 
 
@@ -52,7 +52,7 @@ export class Header extends Component {
                       <button>Users</button>
                     </Link>
                   </div>
-                  <a href={REACT_APP_LOGOUT}>
+                  <a href={REACT_APP_LOGIN}>
                     <button>Logout</button>
                   </a>
                 </div>
@@ -63,7 +63,7 @@ export class Header extends Component {
                   Hello {name}
                 </div>
                 <div className="headerButtons">
-                  <a href={REACT_APP_LOGOUT}>
+                  <a href={REACT_APP_LOGIN}>
                     <button>Logout</button>
                   </a>
                 </div>
