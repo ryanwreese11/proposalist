@@ -16,7 +16,7 @@ export class Header extends Component {
   }
 
   render() {
-    console.log(this.props)
+ 
     const { firstName, lastName, id, admin, dark } = this.props.user
     return (
       <header className={ dark ? "header headerDark": "header"} >

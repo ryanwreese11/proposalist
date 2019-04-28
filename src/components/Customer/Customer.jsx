@@ -95,7 +95,7 @@ export class Customer extends Component {
                 <h3>{cust_first_name} {cust_last_name}</h3>
               </div>
               <div className="progressButtons">
-                <button cclassName={dark ? "completed completedDark" : 'completed'}>Usage</button>
+                <button className={dark ? "completed completedDark" : 'completed'}>Usage</button>
                 <span>></span>
                 <button className={dark ? "inProgress inProgressDark" : 'inProgress'}>System</button>
                 <span></span>
