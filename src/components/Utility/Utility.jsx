@@ -1,15 +1,16 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { getData } from './../../ducks/userReducer'
 
 
 export class Utility extends Component {
 
   render() {
     const { utility_name, utility_rate, utility_ppw, utility_location } = this.props.utility
-
+    const {dark} = this.props.user
     return (
       <div>
-        <div className="items" style={{ borderBottom: '1px solid black' }}>
+        <div className={dark ? 'items itemsDark' : 'items'}>
           <div>
             <h3>{utility_name}</h3>
           </div>
@@ -19,7 +20,7 @@ export class Utility extends Component {
             <span>Area Pricing: ${utility_ppw}/watt</span>
           </div>
           
-          <button>Edit Utility</button>
+          <button className={dark? 'button buttonDark' : 'button'}>Edit Utility</button>
         </div>
       </div>
     )
@@ -30,4 +31,4 @@ export class Utility extends Component {
 
 const mapState = (reduxState) => reduxState
 
-export default connect(mapState)(Utility)
+export default connect(mapState, { getData })(Utility)

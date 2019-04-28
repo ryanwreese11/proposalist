@@ -92,8 +92,9 @@ export class Equipment extends Component {
 
 
   render() {
+    const {dark} = this.props.user
     return (
-      <div>
+      <div className={this.props.user.dark ? 'itemsWrapper itemsWrapperDark' : "itemsWrapper"}>
         <h1>Equipment</h1>
         {
           this.state.modCreate ? (
@@ -108,8 +109,8 @@ export class Equipment extends Component {
                 <input value={this.state.modSize} name="modSize" placeholder='watts' onChange={this.handleChange}></input>
               </div>
               <div>
-                <button onClick={() => this.createModule()}>Create Module</button>
-                <button onClick={() => this.cancelClick()}>Cancel</button>
+                <button className={dark? 'button buttonDark': 'button'}onClick={() => this.createModule()}>Create Module</button>
+                <button className={dark? 'button buttonDark': 'button'}onClick={() => this.cancelClick()}>Cancel</button>
               </div>
             </div>
           ) : this.state.invCreate ? (
@@ -124,21 +125,21 @@ export class Equipment extends Component {
                 <input value={this.state.invType} name="invType" placeholder='type' onChange={this.handleChange}></input>
               </div>
               <div>
-                <button onClick={() => this.createInverter()}>Create Inverter</button>
-                <button onClick={() => this.cancelClick()}>Cancel</button>
+                <button className={dark? 'button buttonDark': 'button'}onClick={() => this.createInverter()}>Create Inverter</button>
+                <button  className={dark? 'button buttonDark': 'button'}onClick={() => this.cancelClick()}>Cancel</button>
               </div>
             </div>
           ) : (
                 <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around' }}>
                   <div >
-                    <button onClick={() => this.modClick()}>New Module</button>
+                    <button className={dark? 'button buttonDark': 'button'}onClick={() => this.modClick()}>New Module</button>
                     {this.state.modules.map(item => {
                       return <Modules key={item.mod_id} module={item}
                         modules={this.state.modules} />
                     })}
                   </div>
                   <div>
-                    <button onClick={() => this.invClick()}>New Inverter</button>
+                    <button className={dark? 'button buttonDark': 'button'}onClick={() => this.invClick()}>New Inverter</button>
                     {this.state.inverters.map(item => {
                       return <Inverters key={item.inv_id} inverter={item}
                         inverters={this.state.inverters} />

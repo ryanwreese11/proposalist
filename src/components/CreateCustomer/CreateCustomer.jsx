@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import {Link} from 'react-router-dom'
+import { getData } from './../../ducks/userReducer'
+import { connect } from 'react-redux'
 
 
 // import { Link } from 'react-router-dom'
@@ -48,7 +50,7 @@ export class CreateCustomer extends Component {
 
 
   render() {
-
+    const {dark} = this.props.user
     let mappedUtilities = this.state.utilities.map((utility, i) => {
       return <option key={i}>{`${utility.utility_name}`}</option>
     })
@@ -65,7 +67,7 @@ export class CreateCustomer extends Component {
           <input onChange={(e) => this.setState({ address: e.target.value })} value={this.state.address} type='text'></input>
           <span>Utility: </span>
           <select onChange={(e) => this.setState({ utility: e.target.value })} value={this.state.utility}>
-            <option ></option>
+            <option disabled></option>
             {mappedUtilities}
 
           </select>
@@ -79,7 +81,7 @@ export class CreateCustomer extends Component {
           <input onChange={(e) => this.setState({ apptTime: e.target.value })} value={this.state.apptTime} type="time"></input>
         </div>
         <Link to='/'>
-          <button onClick={() => this.newCust()}>Create Customer</button>
+          <button className={dark? 'button buttonDark' : 'button'} onClick={() => this.newCust()}>Create Customer</button>
         </Link>
 
 
@@ -89,4 +91,6 @@ export class CreateCustomer extends Component {
   }
 }
 
-export default CreateCustomer
+const mapState = (reduxState) => reduxState
+
+export default connect(mapState, { getData })(CreateCustomer)

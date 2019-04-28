@@ -20,6 +20,7 @@ export class Register extends Component {
       isAdmin: false,
       isRep: false,
       edit: false,
+      dark: false,
       accounts: []
     }
 
@@ -30,15 +31,15 @@ export class Register extends Component {
   }
 
   async register() {
-    const { firstName, lastName, email, password, isAdmin, isRep } = this.state
-    const res = await axios.post(`/auth/register`, { firstName, lastName, email, password, isAdmin, isRep })
+    const { firstName, lastName, email, password, isAdmin, isRep, dark } = this.state
+    const res = await axios.post(`/auth/register`, { firstName, lastName, email, password, isAdmin, isRep, dark})
     if (res.data.loggedIn) this.props.history.push('/')
     else alert(res.data.message)
   }
 
   async createUser() {
-    const { firstName, lastName, email, password, isAdmin, isRep } = this.state
-    await axios.post(`/api/users`, { firstName, lastName, email, password, isAdmin, isRep }).then(this.setState({ edit: false }))
+    const { firstName, lastName, email, password, isAdmin, isRep, dark } = this.state
+    await axios.post(`/api/users`, { firstName, lastName, email, password, isAdmin, isRep, dark }).then(this.setState({ edit: false }))
 
   }
 
@@ -79,25 +80,25 @@ export class Register extends Component {
 
 
   render() {
-    const { admin } = this.props.user
+    const { admin, dark} = this.props.user
     return (
-      <div>
+      <div className={dark ? 'itemsWrapper itemsWrapperDark' : "itemsWrapper"}>
         <h1>Users</h1>
         {
           admin ? (
             <div>
               {this.state.edit ? (
-                <div>
+                <div >
                   <div>
                     <h1>Create User</h1>
                     <span>First Name</span>
-                    <input onChange={(e) => this.setState({ firstName: e.target.value })} value={this.state.firstName} type='text'></input>
+                    <input className={dark ? 'input inputDark': 'input'} onChange={(e) => this.setState({ firstName: e.target.value })} value={this.state.firstName} type='text'></input>
                     <span>Last Name</span>
-                    <input onChange={(e) => this.setState({ lastName: e.target.value })} value={this.state.lastName} type='text'></input>
+                    <input className={dark ? 'input inputDark': 'input'}onChange={(e) => this.setState({ lastName: e.target.value })} value={this.state.lastName} type='text'></input>
                     <span>Email</span>
-                    <input onChange={(e) => this.setState({ email: e.target.value })} value={this.state.email} type='text'></input>
+                    <input className={dark ? 'input inputDark': 'input'}onChange={(e) => this.setState({ email: e.target.value })} value={this.state.email} type='text'></input>
                     <span>Password</span>
-                    <input onChange={(e) => this.setState({ password: e.target.value })} value={this.state.password} type='text'></input>
+                    <input className={dark ? 'input inputDark': 'input'}onChange={(e) => this.setState({ password: e.target.value })} value={this.state.password} type='text'></input>
                   </div>
                   <div>
                     <form>
@@ -111,14 +112,14 @@ export class Register extends Component {
                     </form>
                   </div>
                   <div>
-                    <button onClick={() => this.createUser()} >Create User</button>
-                    <button onClick={() => this.cancel()} >Cancel</button>
+                    <button className={dark? 'button buttonDark' : 'button'} onClick={() => this.createUser()} >Create User</button>
+                    <button className={dark? 'button buttonDark' : 'button'} onClick={() => this.cancel()} >Cancel</button>
                   </div>
                 </div>
               ) : (
                   <div>
                     <div>
-                      <button onClick={() => this.handleNewClick()}>New User</button>
+                      <button className={dark? 'button buttonDark' : 'button'} onClick={() => this.handleNewClick()}>New User</button>
                     </div>
                     {this.state.accounts.map(item => {
                       return <User key={item.user_id} account={item}
@@ -141,7 +142,7 @@ export class Register extends Component {
                 <span>Password</span>
                 <input onChange={(e) => this.setState({ password: e.target.value })} value={this.state.password} type='text'></input>
 
-                <button onClick={() => this.register()} >Create User</button>
+                <button className={dark? 'button buttonDark' : 'button'} onClick={() => this.register()} >Create User</button>
 
               </div>
             )

@@ -1,0 +1,95 @@
+.progressButtons {
+  width: 65%;
+  display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	align-items: baseline;
+	align-content: stretch;
+}
+
+.progressButtonsDark {
+  width: 65%;
+  display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	align-items: baseline;
+  align-content: stretch;
+  
+}
+
+
+.items2 {
+  display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	align-items: baseline;
+	align-content: stretch;
+}
+
+.items2Dark {
+  display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	align-items: baseline;
+  align-content: stretch;
+  color: whitesmoke
+}
+
+.items button {
+  font-size: 1rem
+}
+.itemsDark button {
+  font-size: 1rem
+}
+
+
+
+.completed {
+  background: none;
+  border: none; 
+  cursor: pointer;
+  color: rgb(228, 159, 56);
+  transition: .3s;
+}
+ 
+.completedDark {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color:rgb(228, 159, 56);
+  transition: .3s;
+}
+
+
+.completed:hover { 
+  color: rgba(6, 6, 6, 0.941); 
+}
+
+.completedDark:hover { 
+  color: rgb(255, 255, 255); 
+}
+ 
+.inProgress {
+  background: none;
+  border: none;
+  color:rgb(172, 172, 172);
+  cursor: auto
+}
+
+.inProgressDark {
+  background: none;
+  border: none;
+  color:rgba(6, 6, 6, 0.941)
+}
+
+.inProgress:hover { 
+  color: rgb(172, 172, 172); 
+}
+
+.inProgressDark:hover { 
+  color: rgba(6, 6, 6, 0.941); 
+}

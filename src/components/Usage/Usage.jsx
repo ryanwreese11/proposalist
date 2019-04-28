@@ -86,7 +86,7 @@ export class Usage extends Component {
   }
 
   render() {
-
+    const {dark} = this.props.user
     const multiply = (num1, num2) => {
       return Math.floor(num1 * num2)
     }
@@ -114,9 +114,9 @@ export class Usage extends Component {
               <div>
                 <span>Current Annual Bill: ${multiply(this.state.usage, this.state.utilityRate)}</span>
               </div>
-              <button onClick={() => this.edit()}>Edit</button>
+              <button className={dark? 'button buttonDark' : 'button'} onClick={() => this.edit()}>Edit</button>
               <Link to={`/system/${this.props.match.params.cust_id}`}>
-                <button onClick={() => this.updateCustomer()}>Next Step</button>
+                <button className={dark? 'button buttonDark' : 'button'} onClick={() => this.updateCustomer()}>Next Step</button>
               </Link>
             </div>
           ) : (
@@ -132,7 +132,7 @@ export class Usage extends Component {
                   <input name="usage" onChange={this.handleChange} ></input> kWh
                 </div>
 
-                <button onClick={() => this.cancel()}>Save ></button>
+                <button className={dark? 'button buttonDark' : 'button'} onClick={() => this.cancel()}>Save ></button>
 
               </div>
 

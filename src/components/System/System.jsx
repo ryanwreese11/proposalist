@@ -151,6 +151,7 @@ export class System extends Component {
 
 
   render() {
+    const {dark} = this.props.user
 
     let mappedModules = this.state.modules.map((module, i) => {
       return <option key={i} value={module.mod_name}>{`${module.mod_name}`}</option>
@@ -194,11 +195,11 @@ export class System extends Component {
             <input name='moduleAmount' onChange={this.handleChange} placeholder="count"></input>
           </div>
           <select name="moduleName" onChange={this.handleChange}>
-            <option></option>
+            <option disabled>Select Module</option>
             {mappedModules}
           </select>
           <select name="moduleSize" onChange={this.handleChange}>
-            <option></option>
+            <option disabled></option>
             <option>300</option>
             <option>320</option>
           </select>
@@ -206,7 +207,7 @@ export class System extends Component {
 
 
          
-          <button onClick={() => this.setSystemSize(this.state.moduleAmount, this.state.moduleSize)}>Calculate System Size</button>
+          <button className={dark? 'button buttonDark' : 'button'} onClick={() => this.setSystemSize(this.state.moduleAmount, this.state.moduleSize)}>Calculate System Size</button>
           <div>
             <span>Inverter: </span>
           </div>
@@ -222,11 +223,11 @@ export class System extends Component {
             <option></option>
             {mappedLoans}
           </select>
-          <button onClick={() => {this.setSystemCost(this.state.systemSize, this.state.ppw); this.setPropRatio(this.state.production, this.state.systemSize)}}>Calculate System Size</button>
+          <button className={dark? 'button buttonDark' : 'button'} onClick={() => {this.setSystemCost(this.state.systemSize, this.state.ppw); this.setPropRatio(this.state.production, this.state.systemSize)}}>Calculate System Size</button>
    
         </div>
         <Link to={`/proposal/${this.props.match.params.cust_id}`}>
-          <button onClick={() => { this.newProposal(); this.updateCustomer() }} >Create Proposal</button>
+          <button className={dark? 'button buttonDark' : 'button'} onClick={() => { this.newProposal(); this.updateCustomer() }} >Create Proposal</button>
         </Link>
       </div>
     )

@@ -5,15 +5,20 @@ import { getData } from './../../ducks/userReducer'
 export class Inverters extends Component {
   render() {
     const { inv_name, inv_type } = this.props.inverter
+    const { dark } = this.props.user
 
     return (
-      <div className="items" style={{ borderBottom: '1px solid black' }}>
+      <div className={dark ? 'items itemsDark' : 'items'}>
         <div>
-          <span>{inv_name}</span>
-          <span>{inv_type}</span>
+          <div>
+            <span>{inv_name}</span>
+          </div>
+          <div>
+            <span>{inv_type}</span>
+          </div>
         </div>
-        <div>
-          <button>Edit Inverter</button>
+        <div style={{textAlign: 'center'}}>
+          <button className={dark ? 'button buttonDark' : 'button'}>Edit Inverter</button>
         </div>
       </div>
     )

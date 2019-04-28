@@ -54,7 +54,7 @@ export class Proposal extends Component {
 
   render() {
     console.log(this.state)
-
+    const {dark} = this.props.user
     let mappedProposals = this.state.proposals.map((proposal, i) => {
       return <div className="items" key={i} value={module.mod_name}>
         <div >
@@ -66,7 +66,7 @@ export class Proposal extends Component {
             <li>ID: {proposal.prop_id} </li>
           </ul>
           <Link to={`/proposalview/${proposal.prop_id}`}>
-            <button>View Proposal</button>
+            <button className={dark? 'button buttonDark' : 'button'}>View Proposal</button>
           </Link>
         </div>
       </div>
@@ -76,7 +76,7 @@ export class Proposal extends Component {
       <div>
         <h3>Proposals</h3>
         <Link to={`/system/${this.props.match.params.cust_id}`}>
-          <button>New Proposal</button>
+          <button className={dark? 'button buttonDark' : 'button'}>New Proposal</button>
         </Link>
         {mappedProposals}
 

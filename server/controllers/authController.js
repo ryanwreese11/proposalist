@@ -13,7 +13,7 @@ module.exports = {
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(password, salt);
     let newUserArr = await db.create_user([firstName, lastName, email, hash]);
-    req.session.user = { name: newUserArr[0].user_first_name, lastName: newUserArr[0].user_last_name, email: newUserArr[0].user_email, id: newUserArr[0].user_id, loggedIn: newUserArr[0].loggedIn }
+    req.session.user = { firstName: newUserArr[0].user_first_name, lastNAme: newUserArr[0].user_last_name, lastName: newUserArr[0].user_last_name, email: newUserArr[0].user_email, id: newUserArr[0].user_id, loggedIn: newUserArr[0].loggedIn, dark: newUserArr[0].dark }
     return res.status(200).send({
       message: 'Logged in.',
       userData: req.session.user,
@@ -33,7 +33,7 @@ module.exports = {
     if (!result) {
       return res.status(200).send({ message: 'Incorrect password' })
     }
-    req.session.user = { name: userArr[0].user_first_name, email: userArr[0].user_email, id: userArr[0].user_id, admin: userArr[0].is_admin, rep: userArr[0].is_rep }
+    req.session.user = { firstName: userArr[0].user_first_name, lastName: userArr[0].user_last_name, email: userArr[0].user_email, id: userArr[0].user_id, admin: userArr[0].is_admin, rep: userArr[0].is_rep, dark: userArr[0].dark }
     res.status(200).send({
       message: 'Login Successful',
       loggedIn: true,

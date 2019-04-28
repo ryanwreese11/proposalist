@@ -5,12 +5,15 @@ import { getData } from './../../ducks/userReducer'
 import Customer from '../Customer/Customer'
 import axios from 'axios'
 
+import  '../Dashboard/Dashboard.css'
+
 
 export class Dashboard extends Component {
   constructor() {
     super()
     this.state = {
-      customers: []
+      customers: [],
+      dark: ''
 
     }
   }
@@ -77,12 +80,12 @@ export class Dashboard extends Component {
     })
 
 
-
+    const {dark} = this.props.user
     return (
       <div>
-        <div className="dashboard">
+        <div className={this.props.user.dark ? 'dashboard dashboardDark' : "dashboard"}>
           <div>
-            <h1>Dashboard</h1>
+            <h4>Dashboard</h4>
           </div>
           <div className="progressNums">
             <div>
@@ -110,10 +113,11 @@ export class Dashboard extends Component {
             </div>
           </div>
           <Link to='/newcust'>
-            <button>New Customer</button>
+            <button className={dark? 'button buttonDark' : 'button'}>New Customer</button>
           </Link>
+          <button className={dark? 'button buttonDark' : 'button'}>Dark Mode</button>
         </div>
-        <div className="customerWrapper">
+        <div className={this.props.user.dark ? 'itemsWrapper itemsWrapperDark' : "itemsWrapper"}>
           {this.state.customers.map(item => {
             return <Customer key={item.cust_id} customer={item}
               customers={this.state.customers}

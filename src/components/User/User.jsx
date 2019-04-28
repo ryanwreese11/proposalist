@@ -1,19 +1,20 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { getData } from './../../ducks/userReducer'
 
 export class User extends Component {
 
 
   render() {
     const { user_first_name, user_last_name, user_email, is_admin, is_rep, user_id } = this.props.account
-
+    const {dark} = this.props.user
 
 
 
     console.log(this.props)
     return (
       <div>
-        <div  className="items" style={{ borderBottom: '1px solid black' }}>
+        <div className={dark ? 'items itemsDark' : 'items'}>
           <div>
             <h3>{user_first_name} {user_last_name}</h3>
           </div>
@@ -34,7 +35,7 @@ export class User extends Component {
               </span>
             
           </div>
-          <button>Edit User</button>
+          <button className={dark? 'button buttonDark' : 'button'}>Edit User</button>
         </div>
       </div>
     )
@@ -47,4 +48,4 @@ export class User extends Component {
 
 const mapState = (reduxState) => reduxState
 
-export default connect(mapState)(User)
+export default connect(mapState, { getData })(User)

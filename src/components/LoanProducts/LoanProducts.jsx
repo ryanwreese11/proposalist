@@ -56,6 +56,7 @@ export class LoanProucts extends Component {
 
   async createLoan() {
     const { loanName, loanTerm, interest, prePmtFactor, postPmtFactor } = this.state
+    
     await axios.post(`/api/loans`, { loanName, loanTerm, interest, prePmtFactor, postPmtFactor })
       .then(this.setState({ edit: false }))
 
@@ -64,8 +65,9 @@ export class LoanProucts extends Component {
   }
 
   render() {
+    const { dark} = this.props.user
     return (
-      <div>
+      <div className={dark ? 'itemsWrapper itemsWrapperDark' : "itemsWrapper"}>
         <h1>Financial Products</h1>
         {
           this.state.edit ? (
@@ -84,13 +86,13 @@ export class LoanProucts extends Component {
                 <input value={this.state.postPmtFactor} name="postPmtFactor" onChange={this.handleChange}></input>
               </div>
               <div>
-                <button onClick={() => this.createLoan()}>Create Product</button>
-                <button onClick={() => this.cancelClick()}>Cancel</button>
+                <button className={dark? 'button buttonDark' : 'button'} onClick={() => this.createLoan()}>Create Product</button>
+                <button className={dark? 'button buttonDark' : 'button'} onClick={() => this.cancelClick()}>Cancel</button>
               </div>
             </div>
           ) : (
-              <div>
-                <button onClick={() => this.createClick()}>Add New Product</button>
+              <div >
+                <button className={dark? 'button buttonDark' : 'button'} onClick={() => this.createClick()}>Add New Product</button>
 
                 {this.state.loans.map(item => {
                   return <Loan key={item.loan_id} loan={item}

@@ -140,7 +140,7 @@ export class ProposalView extends Component {
       return num1 / num2
     }
 
-
+    const {dark} = this.props.user
 
     console.log(this.state)
     return (
@@ -155,15 +155,15 @@ export class ProposalView extends Component {
           <div>{repFirstName} {repLastName}</div>
           <div name="systemSize" >System Size: {systemSize / 1000} kW</div>
           <div>{moduleCount} {module} watts</div>
-          <button onClick={() => {this.incrementModuleCount();this.setSystemSize(this.state.moduleCount, this.state.moduleSize)}}>Add Panel</button>
-          <button onClick={() => {this.decrementModuleCount();this.setSystemSize(this.state.moduleCount, this.state.moduleSize)}}>Remove Panel</button>
+          <button className={dark? 'button buttonDark' : 'button'} onClick={() => {this.incrementModuleCount();this.setSystemSize(this.state.moduleCount, this.state.moduleSize)}}>Add Panel</button>
+          <button className={dark? 'button buttonDark' : 'button'} onClick={() => {this.decrementModuleCount();this.setSystemSize(this.state.moduleCount, this.state.moduleSize)}}>Remove Panel</button>
           <div>Inverter: {inverter}</div>
           <div > {Math.floor(propRatio * systemSize / 1000)} kWh/Annually</div>
           <div>Offset: {Math.floor(divide((propRatio * systemSize / 1000), usage) * 100)}%</div>
         </div>
         <div>
           <div>Total System Cost ${(systemSize * ppw).toFixed(2)}</div>
-          <button onClick={() => this.incrementSystemCost()}></button>
+          <button className={dark? 'button buttonDark' : 'button'} onClick={() => this.incrementSystemCost()}></button>
           <div>Federal Tax Incentive ${multiply(systemCost, .3).toFixed(2)}</div>
           <div>Net System Cost ${multiply((systemSize * ppw), .7).toFixed(2)}</div>
           <div>Pre Payment ${multiply(prePmtFactor, (systemSize * ppw)).toFixed(2)}</div>

@@ -62,8 +62,9 @@ export class Utilities extends Component {
   }
 
   render() {
+    const {dark} = this.props.user
     return (
-      <div>
+      <div className={this.props.user.dark ? 'itemsWrapper itemsWrapperDark' : "itemsWrapper"}>
         <h1>Utility Companies</h1>
 
         {
@@ -80,13 +81,13 @@ export class Utilities extends Component {
                 <input value={this.state.utilityPpw} name="utilityPpw" onChange={this.handleChange}></input>
               </div>
               <div>
-                <button onClick={() => this.createUtility()}>Create Utility</button>
-                <button onClick={() => this.cancelClick()}>Cancel</button>
+                <button className={dark? 'button buttonDark' : 'button'} onClick={() => this.createUtility()}>Create Utility</button>
+                <button className={dark? 'button buttonDark' : 'button'} onClick={() => this.cancelClick()}>Cancel</button>
               </div>
             </div>
           ) : (
               <div>
-                <button onClick={() => this.createClick()}>New Utility</button>
+                <button className={dark? 'button buttonDark' : 'button'} onClick={() => this.createClick()}>New Utility</button>
 
                 {
                   this.state.utilities.map(item => {

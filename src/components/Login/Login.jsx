@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import axios from 'axios';
 import { getData } from './../../ducks/userReducer'
 import { connect } from 'react-redux'
+import '../Login/Login.css'
 
 
 
@@ -26,21 +27,24 @@ export class Login extends Component {
 
 
   render() {
+    const {dark} = this.props.user
     return (
       <div className="login">
-        <div>
-          <h1>Login</h1>
-          <span>Email</span>
-          <input onChange={(e) => this.setState({ email: e.target.value })} value={this.state.email} type='text'></input>
-          <span>Password</span>
-          <input onChange={(e) => this.setState({ password: e.target.value })} value={this.state.password} type='password'></input>
-          <button onClick={() => this.login()}>Login</button>
-        </div>
-        <div>
-          <span>Don't have an account? Register </span>
-          <Link to='/register'>
-            <span>Here</span>
-          </Link>
+        <div className={this.props.user.dark ? 'itemsWrapper itemsWrapperDark' : "itemsWrapper"}>
+          <div>
+            <h1>Login</h1>
+            <span>Email</span>
+            <input onChange={(e) => this.setState({ email: e.target.value })} value={this.state.email} type='text'></input>
+            <span>Password</span>
+            <input onChange={(e) => this.setState({ password: e.target.value })} value={this.state.password} type='password'></input>
+            <button className={dark? 'button buttonDark' : 'button'} onClick={() => this.login()}>Login</button>
+          </div>
+          <div>
+            <span>Don't have an account? Register </span>
+            <Link to='/register'>
+              <span>Here</span>
+            </Link>
+          </div>
         </div>
       </div>
     )

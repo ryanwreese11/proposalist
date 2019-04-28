@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { getData } from './../../ducks/userReducer'
+import '../Header/Header.css'
 require('dotenv').config()
 const { REACT_APP_LOGOUT} = process.env
 
@@ -16,12 +17,12 @@ export class Header extends Component {
 
   render() {
     console.log(this.props)
-    const { name, id, admin } = this.props.user
+    const { firstName, lastName, id, admin, dark } = this.props.user
     return (
-      <header >
+      <header className={ dark ? "header headerDark": "header"} >
         <div>
           <Link to='/'>
-            <button>Proposalist</button>
+            <button className={dark? 'button buttonDark' : 'button'}>Proposalist</button>
           </Link>
         </div>
         <div >
@@ -29,49 +30,49 @@ export class Header extends Component {
             id && admin ? (
               <div className="headerRight">
                 <div >
-                  <span>Admin User, {name} </span>
+                  <span className={dark? 'button buttonDark' : 'button'}>{firstName} {lastName} </span>
                 </div>
                 <div className="headerButtons">
                   <div>
                     <Link to='/loans'>
-                      <button>Loan Products</button>
+                      <button className={dark? 'button buttonDark' : 'button'}>Loan Products</button>
                     </Link>
                   </div>
                   <div>
                     <Link to="/equipment">
-                      <button>Equipment</button>
+                      <button className={dark? 'button buttonDark' : 'button'}>Equipment</button>
                     </Link>
                   </div>
                   <div>
                     <Link to="/utilities">
-                      <button>Utilities</button>
+                      <button className={dark? 'button buttonDark' : 'button'}>Utilities</button>
                     </Link>
                   </div>
                   <div>
                     <Link to="/register">
-                      <button>Users</button>
+                      <button className={dark? 'button buttonDark' : 'button'}>Users</button>
                     </Link>
                   </div>
                   <a href={REACT_APP_LOGOUT}>
-                    <button>Logout</button>
+                    <button className={dark? 'button buttonDark' : 'button'}>Logout</button>
                   </a>
                 </div>
               </div>
             ) : id ? (
               <div >
                 <div >
-                  Hello {name}
+                {firstName} {lastName}
                 </div>
                 <div className="headerButtons">
                   <a href={REACT_APP_LOGOUT}>
-                    <button>Logout</button>
+                    <button className={dark? 'button buttonDark' : 'button'}>Logout</button>
                   </a>
                 </div>
               </div>
             ) : (
                   <div className="headerButtons">
                     <Link to='/login'>
-                      <button>Login</button>
+                      <button className={dark? 'button buttonDark' : 'button'}>Login</button>
                     </Link>
                   </div>
                 )
@@ -86,3 +87,5 @@ export class Header extends Component {
 const mapState = (reduxState) => reduxState
 
 export default connect(mapState, { getData })(Header)
+
+
