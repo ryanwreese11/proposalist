@@ -4,8 +4,7 @@ import { Link } from 'react-router-dom'
 import { getData } from './../../ducks/userReducer'
 import Customer from '../Customer/Customer'
 import axios from 'axios'
-import Popup from 'reactjs-popup'
-import CreateCustomer from '../CreateCustomer/CreateCustomer'
+
 
 import  '../Dashboard/Dashboard.css'
 
@@ -134,10 +133,7 @@ export class Dashboard extends Component {
             </div>
           </div>
 
-          {/* <Popup trigger={<button className={dark? 'button buttonDark' : 'button'}>New Customer</button>} backgroundColor='black' >
-            <CreateCustomer/>
-       
-          </Popup> */}
+         
 
           <Link to='/newcust'>
             <button className={dark? 'button buttonDark' : 'button'}>New Customer</button>
