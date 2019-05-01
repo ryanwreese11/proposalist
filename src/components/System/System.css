@@ -1,0 +1,45 @@
+.createPropButtons {
+  display: flex;
+  flex-direction: row;  
+  justify-content: space-between;
+  width: 60%
+
+}
+
+.createSystem {
+  display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+  justify-content: stretch;
+  color: rgba(43, 43, 43);
+  background-color: white;
+  text-decoration: none;
+  align-content: stretch;
+  align-items: center;
+  border-bottom: 1px solid ;
+  padding: 1rem;
+  border-radius: 5px;
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(89, 89, 89, 0.26); 
+  box-shadow: 1px 1px 5px 0px rgba(89, 89, 89, 0.26);
+  height:16rem
+}
+
+
+
+.createSystemDark {
+  display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+  justify-content: stretch;
+  color: rgb(172, 172, 172);
+	align-items: center;
+  align-content: stretch;
+  border-radius: 5px;
+  transition: .5s;
+  padding: 1rem;
+  background-color: rgba(43, 43, 43, 0.941);
+  border-bottom-color: rgb(228, 159, 56);
+  height: 16rem
+  
+  
+}

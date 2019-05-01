@@ -104,9 +104,9 @@ export class Equipment extends Component {
               </div>
               <div>
                 <span>Module Manufacturer</span>
-                <input value={this.state.modName} name="modName" placeholder='manufacturer' onChange={this.handleChange}></input>
+                <input className={dark ? 'input inputDark' : 'input'} value={this.state.modName} name="modName" placeholder='manufacturer' onChange={this.handleChange}></input>
                 <span>Module Size</span>
-                <input value={this.state.modSize} name="modSize" placeholder='watts' onChange={this.handleChange}></input>
+                <input className={dark ? 'input inputDark' : 'input'} value={this.state.modSize} name="modSize" placeholder='watts' onChange={this.handleChange}></input>
               </div>
               <div>
                 <button className={dark? 'button buttonDark': 'button'}onClick={() => this.createModule()}>Create Module</button>
@@ -120,9 +120,9 @@ export class Equipment extends Component {
               </div>
               <div>
                 <span>Inverter Manufacturer</span>
-                <input value={this.state.invName} name="invName" placeholder='manufacturer' onChange={this.handleChange}></input>
+                <input className={dark ? 'input inputDark' : 'input'} value={this.state.invName} name="invName" placeholder='manufacturer' onChange={this.handleChange}></input>
                 <span>Inverter Type</span>
-                <input value={this.state.invType} name="invType" placeholder='type' onChange={this.handleChange}></input>
+                <input className={dark ? 'input inputDark' : 'input'} value={this.state.invType} name="invType" placeholder='type' onChange={this.handleChange}></input>
               </div>
               <div>
                 <button className={dark? 'button buttonDark': 'button'}onClick={() => this.createInverter()}>Create Inverter</button>

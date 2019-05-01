@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom'
 import { getData } from './../../ducks/userReducer'
 import Customer from '../Customer/Customer'
 import axios from 'axios'
+import Popup from 'reactjs-popup'
+import CreateCustomer from '../CreateCustomer/CreateCustomer'
 
 import  '../Dashboard/Dashboard.css'
 
@@ -50,6 +52,24 @@ export class Dashboard extends Component {
     })
   }
 
+  newCust = () => {
+    const { firstName, lastName, email, address, utility, notes, apptDate, apptTime, custProgress } = this.state
+    axios.post(`/api/customers`, { firstName, lastName, email, address, utility, notes, apptDate, apptTime, custProgress }).then(res => {
+      this.getCustomers()
+    }
+    )
+  }
+
+  deleteCustomer= (id)=> {
+    axios.delete(`/api/customers/${this.state.customers.id}`, id).then(res => {
+
+     console.log(res)
+      
+    }).catch(err => console.log('there was an error.', err))
+  
+  }
+
+
 
 
 
@@ -79,6 +99,7 @@ export class Dashboard extends Component {
       return <div>{`${item.cust_progress}`}</div>
     })
 
+      console.log(this.props)
 
     const {dark} = this.props.user
     return (
@@ -112,15 +133,21 @@ export class Dashboard extends Component {
               <span>{soldCustomers.length}</span>
             </div>
           </div>
+
+          {/* <Popup trigger={<button className={dark? 'button buttonDark' : 'button'}>New Customer</button>} backgroundColor='black' >
+            <CreateCustomer/>
+       
+          </Popup> */}
+
           <Link to='/newcust'>
             <button className={dark? 'button buttonDark' : 'button'}>New Customer</button>
           </Link>
-          <button className={dark? 'button buttonDark' : 'button'}>Dark Mode</button>
         </div>
         <div className={this.props.user.dark ? 'itemsWrapper itemsWrapperDark' : "itemsWrapper"}>
           {this.state.customers.map(item => {
             return <Customer key={item.cust_id} customer={item}
               customers={this.state.customers}
+              deleteCustomer={this.deleteCustomer}
             />
           })}
         </div>

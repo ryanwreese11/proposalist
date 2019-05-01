@@ -7,7 +7,9 @@ class Chart extends Component {
     this.state = {
 
       usage: props.usage,
-      production: props.production
+      production: props.production,
+      systemSize: props.systemSize,
+      propRation: props.propRatio
     }
   }
 
@@ -17,23 +19,42 @@ class Chart extends Component {
     let diff = (num1, num2) =>{
         return num1 - num2
       }
-      const data = {
-      labels: ['Solar', 'Utility'],
-      datasets: [
-        {
-          label: 'Usage Offset',
-          data: [this.props.production, diff(this.props.usage,this.props.production)],
-          fill: false,          // Don't fill area under the line
-          backgroundColor: ['darkgreen', ' grey'],
-          border: 'none'  // Line color
-        }
-      ]
-    }
+  
     return (
       <div className="chart">
      
-        <Doughnut
-          data={data}
+        
+          <Doughnut
+          data={{labels: ['Solar', 'Utility'],
+          datasets:[
+            {
+              label:'Expenses by Month',
+              data:[
+                 
+                  diff(Math.floor(this.props.propRatio * this.props.systemSize / 1000)), this.props.usage
+              ],
+              backgroundColor:[
+                'rgb(228, 159, 56)',
+                'rgb(89, 89, 89)',
+
+              ]
+            }
+          ]
+        }}
+        options={{
+          title:{
+            display:true,
+            text:'Usage Offset',
+            fontSize:25,
+            fontColor: '#000'
+          },
+          legend:{
+            display:true,
+            position:'bottom',
+            labels: {fontColor: '#000'}
+          }
+        }}
+          
         />
       </div>
     )

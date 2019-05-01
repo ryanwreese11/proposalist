@@ -3,6 +3,12 @@ import axios from 'axios';
 import { connect } from 'react-redux'
 import { getData } from './../../ducks/userReducer'
 import Chart from './../Chart/Chart'
+import '../ProposalView/ProposalView.css'
+import BarChart from './../Chart/BarChart'
+import { Doughnut } from 'react-chartjs-2'
+import OffsetChart from '../Chart/OffsetChart'
+import { Link } from 'react-router-dom'
+
 
 
 export class ProposalView extends Component {
@@ -86,7 +92,7 @@ export class ProposalView extends Component {
     this.setState({
       moduleCount: this.state.moduleCount + 1
 
-    }, () => this.setProduction(this.state.propRatio, this.state.systemSize))
+    }, () => this.setSystemSize(this.state.moduleCount, this.state.moduleSize))
 
 
   }
@@ -95,7 +101,7 @@ export class ProposalView extends Component {
   decrementModuleCount = () => {
     this.setState({
       moduleCount: this.state.moduleCount - 1
-    }, () => this.setProduction(this.state.propRatio, this.state.systemSize))
+    }, () => this.setSystemSize(this.state.moduleCount, this.state.moduleSize))
   }
 
   incrementSystemCost = () => {
@@ -123,11 +129,39 @@ export class ProposalView extends Component {
     })
   }
 
+  async updateCustomer() {
+    const { usage } = this.state
+    const { cust_id } = this.props.match.params
+    let reqBody = { cust_id, usage, custProgress: 'Proposal' }
+    await axios.put(`/api/usage/${this.props.match.params.cust_id}`, reqBody).then(res => {
+      console.log(res.data[0])
+      this.setState = ({
+        usage: res.data[0].cust_usage,
+        custProgress: res.data[0].cust_progress
+      })
+    })
 
+  }
 
 
 
   render() {
+
+
+
+
+
+
+    let diff = (num1, num2) => {
+      return num1 - num2
+    }
+
+
+
+
+
+
+
     console.log(this.props)
 
     const { firstName, lastName, address, email, usage, inverter, module, prePmtFactor, postPmtFactor, production, systemSize, systemCost, utility, ppw, utilityRate, loanName, loanTerm, interest, repFirstName, repLastName, moduleCount, propRatio } = this.state
@@ -139,43 +173,125 @@ export class ProposalView extends Component {
     const divide = (num1, num2) => {
       return num1 / num2
     }
+    const subtract = (num1, num2) => {
+      return num1 - num2
+    }
 
-    const {dark} = this.props.user
+    const { dark } = this.props.user
 
-    console.log(this.state)
+    // console.log(productionOffset)
     return (
-      <div>
-        <div>
-          <span>{firstName}</span>
-          <span>{lastName}</span>
-          <span>{address}</span>
+      <div className='body'>
+        <div className='customerPropInfo'>
+          <div>
+            <span>{firstName} {lastName}</span>
+          </div>
+          <div>
+            <span>{address}</span>
+          </div>
           <span>{email}</span>
         </div>
+        <div className='repInfo'>{repFirstName} {repLastName}</div>
         <div>
-          <div>{repFirstName} {repLastName}</div>
-          <div name="systemSize" >System Size: {systemSize / 1000} kW</div>
-          <div>{moduleCount} {module} watts</div>
-          <button className={dark? 'button buttonDark' : 'button'} onClick={() => {this.incrementModuleCount();this.setSystemSize(this.state.moduleCount, this.state.moduleSize)}}>Add Panel</button>
-          <button className={dark? 'button buttonDark' : 'button'} onClick={() => {this.decrementModuleCount();this.setSystemSize(this.state.moduleCount, this.state.moduleSize)}}>Remove Panel</button>
-          <div>Inverter: {inverter}</div>
-          <div > {Math.floor(propRatio * systemSize / 1000)} kWh/Annually</div>
-          <div>Offset: {Math.floor(divide((propRatio * systemSize / 1000), usage) * 100)}%</div>
+          <div className='barChart'>
+            <BarChart usage={this.state.usage} utilityRate={this.state.utilityRate} />
+          </div>
+          <div className='currentBill' >
+            <span>${multiply(usage, utilityRate / 12).toFixed(2)}</span>
+            <span>${multiply(usage, utilityRate).toFixed(2) * 2}</span>
+            <span>4%</span>
+            <span>${multiply(usage, utilityRate).toFixed(2)}</span>
+          </div>
+          <div className='currentAnnualBill'>
+          </div>
+          <div>
+            <div className="systemSize" >{systemSize / 1000} kW</div>
+          </div>
+          <div className='equipment'>
+            <div>{moduleCount} {module} watts</div>
+            <div>{inverter}</div>
+          </div>
+          <div className='moduleButtons'>
+            <button className={dark ? 'button buttonDark' : 'button'} onClick={() => { this.incrementModuleCount(); this.setSystemSize(this.state.moduleCount, this.state.moduleSize) }}>Add Panel</button>
+            <button className={dark ? 'button buttonDark' : 'button'} onClick={() => { this.decrementModuleCount(); this.setSystemSize(this.state.moduleCount, this.state.moduleSize) }}>Remove Panel</button>
+          </div>
+          <div className='production'>
+            <div > {Math.floor(propRatio * systemSize / 1000)} kWh</div>
+          </div>
+          <div className='offsetChart'>
+            <Doughnut
+              data={{
+                labels: ['Solar', 'Utility'],
+                datasets: [
+                  {
+                    label: 'Offset',
+                    data: [
+
+                      usage, diff(Math.floor(propRatio * systemSize / 1000), usage)
+                    ],
+                    backgroundColor: [
+                      'rgb(228, 159, 56)',
+                      'rgb(89, 89, 89)',
+
+                    ]
+                  }
+                ]
+              }}
+              options={{
+                title: {
+                  display: true,
+                  text: 'Usage Offset',
+                  fontSize: 0,
+                  fontColor: '#000'
+                },
+                legend: {
+                  display: true,
+                  position: 'bottom',
+                  labels: { fontColor: '#000' }
+                }
+              }} />
+          </div>
+          <div className='utilityPower'>
+            <div>{Math.floor(subtract(usage, (propRatio * systemSize / 1000)) / 100)}%</div>
+          </div>
+          <div className='offset'>
+            <div>{Math.floor(divide((propRatio * systemSize / 1000), usage) * 100)}%</div>
+          </div>
+          <div className='productionChart'>
+            <OffsetChart
+              usage={this.state.usage}
+              propRatio={this.state.propRatio}
+              systemSize={this.state.systemSize} />
+          </div>
+        </div>
+        {/* <div className='offsetChart'>
+            <Chart usage={this.state.usage} production={this.state.production} propRatio={this.props.propRatio} systemSize={this.props.systemSize}/>
+          </div> */}
+        <div className='financialDetails'>
+          <div>
+            <div>Total System Cost ${(systemSize * ppw).toFixed(2)}</div>
+            <div>Federal Tax Incentive ${multiply((systemSize * ppw), .3).toFixed(2)}</div>
+            <div>Net System Cost ${multiply((systemSize * ppw), .7).toFixed(2)}</div>
+          </div>
+          <div>
+            <div>Pre Payment ${multiply(prePmtFactor, (systemSize * ppw)).toFixed(2)}</div>
+            <div>Post Payment ${multiply(postPmtFactor, (systemSize * ppw)).toFixed(2)}</div>
+            <div>{loanName}</div>
+            <div>Utility: {utility}</div>
+          </div>
         </div>
         <div>
-          <div>Total System Cost ${(systemSize * ppw).toFixed(2)}</div>
-          <button className={dark? 'button buttonDark' : 'button'} onClick={() => this.incrementSystemCost()}></button>
-          <div>Federal Tax Incentive ${multiply(systemCost, .3).toFixed(2)}</div>
-          <div>Net System Cost ${multiply((systemSize * ppw), .7).toFixed(2)}</div>
-          <div>Pre Payment ${multiply(prePmtFactor, (systemSize * ppw)).toFixed(2)}</div>
-          <div>Post Payment ${multiply(postPmtFactor, (systemSize * ppw)).toFixed(2)}</div>
-          <div>{loanName}</div>
+          <Link to='/'>
+            <button className={dark ? 'button buttonDark' : 'button'}>Submit New Proposal for signature.</button>
+          </Link>
         </div>
+
         <div>
-          <div>Utility: {utility}</div>
-          <div>Current Average Bill: ${multiply(usage, utilityRate / 12).toFixed(2)}</div>
         </div>
-        <Chart usage={this.state.usage} production={this.state.production} legendPosition="bottom" />
+
+
       </div>
+
     )
   }
 }

@@ -72,13 +72,13 @@ export class Utilities extends Component {
             <div>
               <div>
                 <span>Utility Name:</span>
-                <input value={this.state.utilityName} name="utilityName" onChange={this.handleChange}></input>
+                <input className={dark ? 'input inputDark' : 'input'} value={this.state.utilityName} name="utilityName" onChange={this.handleChange}></input>
                 <span>Location</span>
-                <input value={this.state.utilityLocation} name="utilityLocation" onChange={this.handleChange}></input>
+                <input className={dark ? 'input inputDark' : 'input'} value={this.state.utilityLocation} name="utilityLocation" onChange={this.handleChange}></input>
                 <span>Rate</span>
-                <input value={this.state.utilityRate} name="utilityRate" onChange={this.handleChange}></input>
+                <input className={dark ? 'input inputDark' : 'input'} value={this.state.utilityRate} name="utilityRate" onChange={this.handleChange}></input>
                 <span>Selling PPW</span>
-                <input value={this.state.utilityPpw} name="utilityPpw" onChange={this.handleChange}></input>
+                <input className={dark ? 'input inputDark' : 'input'} value={this.state.utilityPpw} name="utilityPpw" onChange={this.handleChange}></input>
               </div>
               <div>
                 <button className={dark? 'button buttonDark' : 'button'} onClick={() => this.createUtility()}>Create Utility</button>

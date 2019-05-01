@@ -49,6 +49,7 @@ app.get('/api/customers/:id', cc.getCustomersById)
 app.post('/api/customers', cc.newCust)
 app.get('/api/usage/:cust_id', cc.getCustomer)
 app.put('/api/usage/:cust_id', cc.updateCustomer)
+app.delete('/api/customers/:cust_id', cc.deleteCustomer)
 
 
 
@@ -56,6 +57,7 @@ app.put('/api/usage/:cust_id', cc.updateCustomer)
 
 app.get('/api/users', uc.getUsers)
 app.post('/api/users', uc.createUser)
+app.put('/api/user/:id', uc.updateUser)
 
 
 
@@ -85,3 +87,4 @@ app.post('/api/loans', lc.createLoan)
 app.post('/api/proposals', pc.createProposal)
 app.get('/api/proposals/:id', pc.getProposalById)
 app.get('/api/proposalview/:prop_id', pc.getProposalByPropId)
+

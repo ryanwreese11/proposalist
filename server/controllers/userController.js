@@ -22,6 +22,21 @@ module.exports = {
     const hash = bcrypt.hashSync(password, salt);
     await db.create_user([firstName, lastName, email, hash, isAdmin, isRep, dark]);
 
+  },
+
+  updateUser: async (req, res) => {
+    const {id} = req.params
+    const {firstName, lastName, email, dark} = req.body
+    const db = req.app.get('db')
+    console.log(req.body)
+    
+    let updatedUserArr = await db.update_user([id, firstName, lastName, email, dark])
+    req.session.user = { firstName: updatedUserArr[0].user_first_name, lastName: updatedUserArr[0].user_last_name, email: updatedUserArr[0].user_email, id: updatedUserArr[0].user_id, admin: updatedUserArr[0].is_admin, rep: updatedUserArr[0].is_rep, dark: updatedUserArr[0].dark}
+    return res.status(200).send({
+      message: 'Logged in.',
+      userData: req.session.user,
+      loggedIn: true
+    })
   }
 
   

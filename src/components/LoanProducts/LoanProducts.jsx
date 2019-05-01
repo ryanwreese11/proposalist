@@ -3,6 +3,7 @@ import axios from 'axios'
 import { connect } from 'react-redux'
 import { getData } from '../../ducks/userReducer'
 import Loan from '../Loan/Loan'
+import './../LoanProducts/LoanProducts.css'
 
 
 
@@ -56,7 +57,7 @@ export class LoanProucts extends Component {
 
   async createLoan() {
     const { loanName, loanTerm, interest, prePmtFactor, postPmtFactor } = this.state
-    
+
     await axios.post(`/api/loans`, { loanName, loanTerm, interest, prePmtFactor, postPmtFactor })
       .then(this.setState({ edit: false }))
 
@@ -65,34 +66,53 @@ export class LoanProucts extends Component {
   }
 
   render() {
-    const { dark} = this.props.user
+    const { dark } = this.props.user
     return (
       <div className={dark ? 'itemsWrapper itemsWrapperDark' : "itemsWrapper"}>
-        <h1>Financial Products</h1>
         {
           this.state.edit ? (
-            <div>
-              <div>
-                <h3>This is where we edit</h3>
-                <span>Financial Product</span>
-                <input value={this.state.loanName} name="loanName" onChange={this.handleChange}></input>
-                <span>Loan Term</span>
-                <input value={this.state.loanTerm} name="loanTerm" onChange={this.handleChange}></input>
-                <span>Interest Rate</span>
-                <input value={this.state.interest} name="interest" onChange={this.handleChange}></input>
-                <span>Payment factor if ITC applied</span>
-                <input value={this.state.prePmtFactor} name="prePmtFactor" onChange={this.handleChange}></input>
-                <span>Payment factor if ITC is NOT applied</span>
-                <input value={this.state.postPmtFactor} name="postPmtFactor" onChange={this.handleChange}></input>
+            <div >
+            <h1>Financial Products</h1>
+              <div className={dark ? 'create createDark' : 'create'}>
+                <div className={dark ? 'customerInputs customerInputsDark' : 'customerInputs'}>
+                  <div className='customerInputsWrapper'>
+                    <div className='customerInputsWrapper2'>
+                      <div className={dark ? 'customerInputs customerInputsDark' : 'customerInputs'}>
+                        <span>Financial Product: </span>
+                        <span>Loan Term: </span>
+                        <span>Interest Rate: </span>
+                      </div>
+
+                      <div className={dark ? 'customerInputs customerInputsDark' : 'customerInputs'}>
+                        <input className={dark ? 'input inputDark' : 'input'} value={this.state.loanName} name="loanName" onChange={this.handleChange}></input>
+                        <input className={dark ? 'input inputDark' : 'input'} value={this.state.loanTerm} name="loanTerm" onChange={this.handleChange}></input>
+                        <input className={dark ? 'input inputDark' : 'input'} value={this.state.interest} name="interest" onChange={this.handleChange}></input>
+                      </div>
+                    </div>
+                    <div className='customerInputsWrapper2'>
+                      <div className={dark ? 'customerInputs customerInputsDark' : 'customerInputs'}>
+                        <span>Payment factor if ITC applied: </span>
+                        <span>Payment factor if ITC is NOT applied: </span>
+                      </div>
+
+                      <div className={dark ? 'customerInputs customerInputsDark' : 'customerInputs'}>
+                        <input className={dark ? 'input inputDark' : 'input'} value={this.state.prePmtFactor} name="prePmtFactor" onChange={this.handleChange}></input>
+                        <input className={dark ? 'input inputDark' : 'input'} value={this.state.postPmtFactor} name="postPmtFactor" onChange={this.handleChange}></input>
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <button className={dark ? 'button buttonDark' : 'button'} onClick={() => this.createLoan()}>Create Product</button>
+                    <button className={dark ? 'button buttonDark' : 'button'} onClick={() => this.cancelClick()}>Cancel</button>
+                  </div>
+                </div>
               </div>
-              <div>
-                <button className={dark? 'button buttonDark' : 'button'} onClick={() => this.createLoan()}>Create Product</button>
-                <button className={dark? 'button buttonDark' : 'button'} onClick={() => this.cancelClick()}>Cancel</button>
-              </div>
+                  <div className='filler'></div>
             </div>
           ) : (
               <div >
-                <button className={dark? 'button buttonDark' : 'button'} onClick={() => this.createClick()}>Add New Product</button>
+                <h1>Financial Products</h1>
+                <button className={dark ? 'button buttonDark' : 'button'} onClick={() => this.createClick()}>Add New Product</button>
 
                 {this.state.loans.map(item => {
                   return <Loan key={item.loan_id} loan={item}

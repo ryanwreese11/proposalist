@@ -60,7 +60,7 @@ module.exports = {
     const { cust_id } = req.params
     const { custProgress, usage } = req.body
     // console.log(req.body)
-    // console.log(req.params)
+    console.log(req.params)
     req.app.get('db')
       .update_customer([cust_id, usage, custProgress])
       .then((customer) => {
@@ -70,6 +70,20 @@ module.exports = {
         res.status(404).send('Something went wrong');
         console.log(err)
       })
+  },
+
+  deleteCustomer: (req, res) => {
+    const {id} = req.params
+    console.log(req.params)
+    req.app.get('db')
+    .delete_customer(id)
+    .then(()=> {
+      res.status(200).send('Customer deleted.')
+    })
+    .catch(err => {
+      res.status(500).send("Oops! Something went wrong. Our engineers have been informed!");
+      console.log(err)
+    });
   }
 
 }

@@ -3,6 +3,7 @@ import axios from 'axios'
 import { connect } from 'react-redux'
 import { getData } from './../../ducks/userReducer'
 import { Link } from 'react-router-dom'
+import '../System/System.css'
 
 
 export class System extends Component {
@@ -151,7 +152,7 @@ export class System extends Component {
 
 
   render() {
-    const {dark} = this.props.user
+    const { dark } = this.props.user
 
     let mappedModules = this.state.modules.map((module, i) => {
       return <option key={i} value={module.mod_name}>{`${module.mod_name}`}</option>
@@ -172,63 +173,75 @@ export class System extends Component {
 
     return (
 
-      <div>
+      <div className={dark ? 'itemsWrapper itemsWrapperDark' : "itemsWrapper"}>
         <div>
-          <h1>System</h1>
           <h1>{this.state.firstName} {this.state.lastName}</h1>
+          <h2>System</h2>
         </div>
-        <span name="systemSize">System Size {this.state.systemSize / 1000} kW</span>
-        <div>
-        </div>
-        <span name="systemCost">System Cost ${this.state.systemCost}.00</span>
-        <div>
-          <div>
-          <div>
-            <div>
-              <span> Usage Offset: {Math.floor(this.state.production / this.state.usage * 100)}%</span>
+        <div className={dark ? 'createSystem createSystemDark' : 'createSystem'} style={{ display: 'flex', flexDirection: 'column' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', textAlign: 'center' }}>
+            <span name="systemSize">System Size: {this.state.systemSize / 1000} kW </span>
+            <span name="systemCost">System Cost: ${this.state.systemCost}.00 </span>
+            <span> Usage Offset: {Math.floor(this.state.production / this.state.usage * 100)}%</span>
+          </div>
+          <div style={{width: '90%'}}className='customerInputsWrapper'>
+            <div className='customerInputsWrapper2'>
+              <div className={dark ? 'customerInputs customerInputsDark' : 'customerInputs'}>
+                <span>Production from Design Tool: </span>
+                <span>Modules: </span>
+                <select className={dark ? 'input inputDark' : 'input'} name="moduleName" onChange={this.handleChange} placeholder="Module">
+                  <option >Module</option>
+                  {mappedModules}
+                </select>
+              </div>
+              <div style={{ margin: '3px' }} className={dark ? 'customerInputs customerInputsDark' : 'customerInputs'}>
+                <input className={dark ? 'input inputDark' : 'input'} name="production" placeholder="production" onChange={this.handleChange}></input>
+                <input className={dark ? 'input inputDark' : 'input'} name='moduleAmount' onChange={this.handleChange} placeholder="count"></input>
+                <select className={dark ? 'input inputDark' : 'input'} name="moduleSize" onChange={this.handleChange}>
+                  <option >Size</option>
+                  <option>300</option>
+                  <option>320</option>
+                </select>
+              </div>
+              <div>
+
+              </div>
             </div>
-            <span>Production from Design Tool: </span>
-            <input name="production" placeholder="production" onChange={this.handleChange}></input>
-            <span> kWh/annually</span>
-          </div>
-            <span>Modules: </span>
-            <input name='moduleAmount' onChange={this.handleChange} placeholder="count"></input>
-          </div>
-          <select name="moduleName" onChange={this.handleChange}>
-            <option disabled>Select Module</option>
-            {mappedModules}
-          </select>
-          <select name="moduleSize" onChange={this.handleChange}>
-            <option disabled></option>
-            <option>300</option>
-            <option>320</option>
-          </select>
+            <div className='customerInputsWrapper2'>
+              <div className={dark ? 'customerInputs customerInputsDark' : 'customerInputs'}>
+                <span>Inverter: </span>
+                <span>Financial Product: </span>
 
+              </div>
+              <div className={dark ? 'customerInputs customerInputsDark' : 'customerInputs'}>
+                <select className={dark ? 'input inputDark' : 'input'} name="inverterName" onChange={this.handleChange}>
+                  <option>Inverter</option>
+                  {mappedInverters}
+                </select>
+                <select className={dark ? 'input inputDark' : 'input'} name="loanName" onChange={this.handleChange}>
+                  <option>Loan</option>
+                  {mappedLoans}
+                </select>
 
+              </div>
+            </div>
+          </div>
+          <div className='createPropButtons' >
+            <button className={dark ? 'button buttonDark' : 'button'} onClick={() => this.setSystemSize(this.state.moduleAmount, this.state.moduleSize)}>Calculate System Size</button>
+            <button className={dark ? 'button buttonDark' : 'button'} onClick={() => { this.setSystemCost(this.state.systemSize, this.state.ppw); this.setPropRatio(this.state.production, this.state.systemSize) }}>Calculate System Cost</button>
 
-         
-          <button className={dark? 'button buttonDark' : 'button'} onClick={() => this.setSystemSize(this.state.moduleAmount, this.state.moduleSize)}>Calculate System Size</button>
-          <div>
-            <span>Inverter: </span>
           </div>
-          <select name="inverterName" onChange={this.handleChange}>
-            <option></option>
-            {mappedInverters}
-          </select>
-      
-          <div>
-            <span>Financial Product: </span>
-          </div>
-          <select name="loanName" onChange={this.handleChange}>
-            <option></option>
-            {mappedLoans}
-          </select>
-          <button className={dark? 'button buttonDark' : 'button'} onClick={() => {this.setSystemCost(this.state.systemSize, this.state.ppw); this.setPropRatio(this.state.production, this.state.systemSize)}}>Calculate System Size</button>
-   
-        </div>
         <Link to={`/proposal/${this.props.match.params.cust_id}`}>
-          <button className={dark? 'button buttonDark' : 'button'} onClick={() => { this.newProposal(); this.updateCustomer() }} >Create Proposal</button>
+          <button className={dark ? 'button buttonDark' : 'button'} onClick={() => { this.newProposal(); this.updateCustomer() }} >Create Proposal</button>
         </Link>
+        </div>
+
+
+
+
+        <div>
+        </div>
+        <div className='filler'></div>
       </div>
     )
   }

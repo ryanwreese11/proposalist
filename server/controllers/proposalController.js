@@ -32,6 +32,19 @@ module.exports = {
       res.status(418).send('Something went wrong');
       console.log(err)
     })
+  },
+
+  deleteProposal: (req, res) => {
+    const {id} = req.params
+    req.app.get('db')
+    .delete_proposal(id)
+    .then(()=> {
+      res.status(200).send('Proposal deleted.')
+    })
+    .catch(err => {
+      res.status(500).send("Oops! Something went wrong. Our engineers have been informed!");
+      console.log(err)
+    });
   }
 
 }

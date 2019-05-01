@@ -85,20 +85,31 @@ export class Usage extends Component {
 
   }
 
+  deleteCustomer = (id) => {
+    axios.delete(`/api/customers/${this.props.match.params.cust_id}`, id).then(res => {
+
+      console.log(res)
+
+    }).catch(err => console.log('there was an error.', err))
+
+  }
+
+
+
   render() {
-    const {dark} = this.props.user
+    const { dark } = this.props.user
     const multiply = (num1, num2) => {
       return Math.floor(num1 * num2)
     }
     return (
-      <div>
+      <div className={dark ? 'itemsWrapper itemsWrapperDark' : "itemsWrapper"}>
         <h2>Usage</h2>
 
         {
           !this.state.edit ? (
 
 
-            <div>
+            <div className={dark ? 'items itemsDark' : "items"}>
               <div>
                 <h1>{this.state.firstName} {this.state.lastName}</h1>
               </div>
@@ -114,13 +125,15 @@ export class Usage extends Component {
               <div>
                 <span>Current Annual Bill: ${multiply(this.state.usage, this.state.utilityRate)}</span>
               </div>
-              <button className={dark? 'button buttonDark' : 'button'} onClick={() => this.edit()}>Edit</button>
-              <Link to={`/system/${this.props.match.params.cust_id}`}>
-                <button className={dark? 'button buttonDark' : 'button'} onClick={() => this.updateCustomer()}>Next Step</button>
-              </Link>
+              <div>
+                <button className={dark ? 'button buttonDark' : 'button'} onClick={() => this.edit()}>Edit</button>
+                <Link to={`/system/${this.props.match.params.cust_id}`}>
+                  <button className={dark ? 'button buttonDark' : 'button'} onClick={() => this.updateCustomer()}>Next Step</button>
+                </Link>
+              </div>
             </div>
           ) : (
-              <div>
+              <div className={dark ? 'items itemsDark' : "items"}>
                 <div>
                   <h1>{this.state.firstName} {this.state.lastName} {this.state.custProgress}</h1>
                 </div>
@@ -129,15 +142,21 @@ export class Usage extends Component {
                 </div>
                 <div>
                   <span>Current Annual Usage: </span>
-                  <input name="usage" onChange={this.handleChange} ></input> kWh
+                  <input className={dark ? 'input inputDark' : 'input'} name="usage" onChange={this.handleChange} ></input> kWh
                 </div>
-
-                <button className={dark? 'button buttonDark' : 'button'} onClick={() => this.cancel()}>Save ></button>
+                <div>
+                  <button className={dark ? 'button buttonDark' : 'button'} onClick={() => this.cancel()}>Save ></button>
+                  <button className={dark ? 'button buttonDark' : 'button'} onClick={() => this.cancel()}>Cancel </button>
+                  
+                    <button className={dark ? 'button buttonDark' : 'button'} onClick={() => this.deleteCustomer()}>Delete Customer </button>
+                  
+                </div>
 
               </div>
 
             )
         }
+        <div className='filler'></div>
       </div>
     )
   }

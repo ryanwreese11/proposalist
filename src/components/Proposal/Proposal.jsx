@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+import { getData } from './../../ducks/userReducer'
+import { connect } from 'react-redux'
+
 
 
 
@@ -19,9 +22,9 @@ export class Proposal extends Component {
     await this.getProposalById()
     console.log(this.props)
     await this.getCustomer()
+    this.props.getData()
 
   }
-
 
 
   getProposalById = () => {
@@ -50,39 +53,51 @@ export class Proposal extends Component {
     }).catch(err => {
       console.log('asdf', err)
     })
+
+
+
+    console.log(this.props)
   }
-
+  
   render() {
-    console.log(this.state)
-    const {dark} = this.props.user
+    const { dark } = this.props.user
     let mappedProposals = this.state.proposals.map((proposal, i) => {
-      return <div className="items" key={i} value={module.mod_name}>
+        
+        console.log(proposal)
+      return <div className={dark ? 'items itemsDark' : 'items'} key={i} value={module.mod_name}>
         <div >
-          <ul>
-            <li>Cost: ${proposal.prop_system_cost}</li>
-            <li>Size: {proposal.prop_size}</li>
-            <li>Production: {proposal.prop_production} kWh/annually</li>
-            <li>Loan: {proposal.loan_name}</li>
-            <li>ID: {proposal.prop_id} </li>
-          </ul>
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <span>Cost: ${proposal.prop_system_cost}</span>
+            <span>Size: {proposal.prop_size}</span>
+            <span>Production: {proposal.prop_production} kWh/annually</span>
+            <span>Loan: {proposal.loan_name}</span>
+            <span>ID: {proposal.prop_id} </span>
+          </div>
           <Link to={`/proposalview/${proposal.prop_id}`}>
-            <button className={dark? 'button buttonDark' : 'button'}>View Proposal</button>
+            <button className={dark ? 'button buttonDark' : 'button'}>View Proposal</button>
           </Link>
+          
+           
+        
         </div>
-      </div>
-    })
 
+      </div>
+    
+    })
     return (
-      <div>
+      <div className={this.props.user.dark ? 'itemsWrapper itemsWrapperDark' : "itemsWrapper"} >
         <h3>Proposals</h3>
         <Link to={`/system/${this.props.match.params.cust_id}`}>
-          <button className={dark? 'button buttonDark' : 'button'}>New Proposal</button>
+          <button className={dark ? 'button buttonDark' : 'button'}>New Proposal</button>
         </Link>
         {mappedProposals}
+        <div className='filler'></div>
 
       </div>
     )
   }
 }
 
-export default Proposal
+const mapState = (reduxState) => reduxState
+
+export default connect(mapState, { getData })(Proposal)

@@ -7,7 +7,7 @@ export class Utility extends Component {
 
   render() {
     const { utility_name, utility_rate, utility_ppw, utility_location } = this.props.utility
-    const {dark} = this.props.user
+    const { dark } = this.props.user
     return (
       <div>
         <div className={dark ? 'items itemsDark' : 'items'}>
@@ -16,11 +16,16 @@ export class Utility extends Component {
           </div>
           <div>
             <span>{utility_location}</span>
+          </div>
+          <div>
             <span>Rate: ${utility_rate}/kWh</span>
+          </div>
+          <div>
             <span>Area Pricing: ${utility_ppw}/watt</span>
           </div>
-          
-          <button className={dark? 'button buttonDark' : 'button'}>Edit Utility</button>
+          <div>
+            <button className={dark ? 'button buttonDark' : 'button'}>Edit Utility</button>
+          </div>
         </div>
       </div>
     )

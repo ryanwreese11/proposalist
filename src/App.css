@@ -1,6 +1,6 @@
 *{
   font-family: 'Stratos-Regular';
-  box-sizing: border-box;
+  /* box-sizing: border-box; */
 }
 
 button:focus{
@@ -19,12 +19,24 @@ button:focus{
   background-color: white;
   text-decoration: none;
   margin: 1.5rem;
+  border-top: 1px solid rgb(199, 199, 199);
+  border-left: 1px solid rgb(199, 199, 199);
+  border-right: 1px solid rgb(199, 199, 199);
   border-bottom: 1px solid black;
   padding: .5rem;
   border-radius: 5px;
   -webkit-box-shadow: 0px 0px 5px 0px rgba(89, 89, 89, 0.26); 
   box-shadow: 1px 1px 5px 0px rgba(89, 89, 89, 0.26);
+  transition: .3s
   
+}
+
+.items:hover {
+  border-top: 1px solid black;
+  border-right: 1px solid black;
+  border-left: 1px solid black;
+  background-color: rgb(230, 230, 230);
+
 }
 
 .itemsDark {
@@ -33,15 +45,26 @@ button:focus{
   color: rgb(172, 172, 172);
   background-color: rgba(43, 43, 43, 0.941);
   text-decoration: none;
-  
   margin: 1.5rem;
+  border-top: 1px solid rgba(43, 43, 43, 0.941);
+  border-right: 1px solid rgba(43, 43, 43, 0.941);
+  border-left: 1px solid rgba(43, 43, 43, 0.941);
   border-bottom: 1px solid rgb(228, 159, 56);
   padding: .5rem;
   border-radius: 5px;
   -webkit-box-shadow: 0px 0px 5px 0px rgba(89, 89, 89, 0.26); 
   box-shadow: 1px 1px 5px 0px rgba(89, 89, 89, 0.26);
+  transition: .3s
+
 }
 
+.itemsDark:hover {
+  border-top: 1px solid rgb(228, 159, 56);
+  border-right: 1px solid rgb(228, 159, 56);
+  border-left: 1px solid rgb(228, 159, 56);
+  background-color: rgba(65, 65, 65, 0.941);
+  
+}
 .items2 {
   display: flex;
 	flex-direction: row;
@@ -66,10 +89,14 @@ button:focus{
 }
 
 .itemsWrapper {
-  background-color: whitesmoke;
+  background-color: rgb(199, 199, 199);
   padding-top: 1.5rem;
   padding-left: 1rem;
   padding-right: 1rem;
+  
+ 
+  
+  
 }
 
 .itemsWrapperDark {
@@ -77,9 +104,18 @@ button:focus{
   padding-top: 1.5rem;
   padding-left: 1rem;
   padding-right: 1rem;
-  color: rgb(172, 172, 172)
+  color: rgb(172, 172, 172);
+
+  
+
+
+
   
 }
+.filler{
+  height:80vh
+}
+
 
 
 .button {
@@ -87,6 +123,9 @@ button:focus{
   border: none;
   cursor: pointer;
   transition: .3s;
+  border-left: 1px solid black;;
+  font-size: .9rem;
+  transform: .5s
 }
 
 .buttonDark {
@@ -95,22 +134,144 @@ button:focus{
   cursor: pointer;
   color:rgb(172, 172, 172);
   transition: .3s;
+  border-left: 1px solid rgb(172, 172, 172);
+  transform: .5s
 }
 
-button:hover { 
+.button:hover { 
+  color:  rgb(172, 172, 172); 
+  cursor: pointer;
+  transform: translate( 0px, -3px)
+  
+}
+
+
+.buttonDark:hover { 
   color:  rgb(228, 159, 56); 
+  cursor: pointer;
+  transform: translate( 0px, -3px)
+  
 }
 
 .input {
-
-}
-
-.inputDark{
-  background-color: rgba(43, 43, 43, 0.941);
+  background-color: whitesmoke;
   border-bottom-width: 1px;
-  border-bottom-color: rgb(114, 164, 108);
+  border-bottom-color: black;
   border-left: 0;
   border-right: 0;
   border-top: 0;
-  color:rgb(172, 172, 172)
+  color:black;
+  font-size: 1rem
+}
+
+.inputDark{
+  background-color: rgba(33, 33, 33, 0.941);
+  border-bottom-width: 1px;
+  border-bottom-color: rgb(228, 159, 56);
+  border-left: 0;
+  border-right: 0;
+  border-top: 0;
+  color:whitesmoke;
+  font-size: 1rem
+}
+
+
+
+
+
+.createWrapper {
+  background-color: whitesmoke;
+  padding-top: 1.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-around;
+	align-items: center;
+  align-content: stretch;
+  height: 87vh
+ 
+  
+  
+}
+
+.createWrapperDark {
+  background-color: rgba(6, 6, 6, 0.941);
+  padding-top: 1.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  color: rgb(172, 172, 172);
+  display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-around;
+	align-items: center;
+  align-content: stretch;
+  height: 87vh
+  
+}
+
+
+.create {
+  display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+  justify-content: center;
+  color: rgba(43, 43, 43);
+  background-color: white;
+  text-decoration: none;
+  align-content: stretch;
+  border-bottom: 1px solid ;
+  padding: 1rem;
+  border-radius: 5px;
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(89, 89, 89, 0.26); 
+  box-shadow: 1px 1px 5px 0px rgba(89, 89, 89, 0.26);
+}
+
+
+
+.createDark {
+  display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+  justify-content: center;
+  color: rgb(172, 172, 172);
+	align-items: baseline;
+  align-content: stretch;
+  border-radius: 5px;
+  transition: .5s;
+  padding: 1rem;
+  background-color: rgba(43, 43, 43, 0.941);
+  border-bottom-color: rgb(228, 159, 56)
+  
+  
+}
+
+.customerInputs {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 12rem;
+
+}
+
+
+.customerInputsWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  height: 12rem;
+  
+
+}
+.customerInputsWrapper2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  height: 12rem;
+  width: 300px
+  
+  
+
 }

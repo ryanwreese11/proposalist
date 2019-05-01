@@ -34,15 +34,15 @@ export class Login extends Component {
           <div>
             <h1>Login</h1>
             <span>Email</span>
-            <input onChange={(e) => this.setState({ email: e.target.value })} value={this.state.email} type='text'></input>
+            <input className={dark ? 'input inputDark' : 'input'} onChange={(e) => this.setState({ email: e.target.value })} value={this.state.email} type='text'></input>
             <span>Password</span>
-            <input onChange={(e) => this.setState({ password: e.target.value })} value={this.state.password} type='password'></input>
+            <input className={dark ? 'input inputDark' : 'input'} onChange={(e) => this.setState({ password: e.target.value })} value={this.state.password} type='password'></input>
             <button className={dark? 'button buttonDark' : 'button'} onClick={() => this.login()}>Login</button>
           </div>
           <div>
             <span>Don't have an account? Register </span>
             <Link to='/register'>
-              <span>Here</span>
+            <button className={dark? 'button buttonDark' : 'button'}>Here</button>
             </Link>
           </div>
         </div>

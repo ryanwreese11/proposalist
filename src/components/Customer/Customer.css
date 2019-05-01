@@ -67,6 +67,7 @@
 
 .completed:hover { 
   color: rgba(6, 6, 6, 0.941); 
+  
 }
 
 .completedDark:hover { 
@@ -87,7 +88,8 @@
 }
 
 .inProgress:hover { 
-  color: rgb(172, 172, 172); 
+  color: rgb(172, 172, 172);
+ 
 }
 
 .inProgressDark:hover { 

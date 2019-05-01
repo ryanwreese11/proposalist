@@ -14,6 +14,7 @@ export class Customer extends Component {
     this.state = {
       edit: false
     }
+    console.log(this.props)
   }
 
   componentDidMount() {
@@ -31,6 +32,9 @@ export class Customer extends Component {
     })
   }
 
+ 
+
+
   customerView = () => {
     const { cust_email, cust_address, cust_usage, cust_notes, user_appt_date, user_appt_time, utility_name, utility_rate, } = this.props.customer
     const { edit } = this.state
@@ -39,12 +43,13 @@ export class Customer extends Component {
       // console.log(this.props)
       return Math.floor(num1 * num2)
     }
+    console.log(this.props.customer)
     return (
 
       !edit ? (
         <div className='items2Dark'>
-          <div style={{textAlign: 'center'}}>
-            <button  className={dark ? 'button buttonDark' : 'button'} onClick={() => this.handleEdit()}>Customer Details</button>
+          <div style={{ textAlign: 'center' }}>
+            <button className={dark ? 'button buttonDark' : 'button'} onClick={() => this.handleEdit()}>Customer Details</button>
           </div>
         </div>
       ) : (
@@ -54,13 +59,19 @@ export class Customer extends Component {
             <div >
               <div>
                 <div>
-                  <span>Email: {cust_email} </span>
+                  <div>
+                    <span>Email: {cust_email} </span>
+                  </div>
                   <span>Address: {cust_address} </span>
                 </div>
                 <div>
-                  <span>Utility: {utility_name} </span>
-                  <span>Annual Usage:{cust_usage} kWh </span>
-                  <span>Annual Bill: $ {multiply(cust_usage, utility_rate)} </span>
+                  <div>
+                    <span>Utility: {utility_name} </span>
+                  </div>
+                  <span>Annual Usage: {cust_usage ? `${cust_usage} kWh` : 'Add Usage'}  </span>
+                  <div>
+                    <span>Annual Bill: ${multiply(cust_usage, utility_rate)} </span>
+                  </div>
                   <span>Notes: {cust_notes} </span>
                 </div>
                 <div>
@@ -107,7 +118,7 @@ export class Customer extends Component {
             <span>Sales Rep: </span>
             <span>{user_first_name} {user_last_name}</span>
             <div>
-              <span >Progress</span>
+              <span >Progress: </span>
               <span>{cust_progress}</span>
             </div>
             <div>{this.customerView()}</div>
@@ -139,7 +150,7 @@ export class Customer extends Component {
                 <span>Sales Rep: </span>
                 <span>{user_first_name} {user_last_name}</span>
                 <div>
-                  <span >Progress</span>
+                  <span >Progress: </span>
                   <span>{cust_progress}</span>
                 </div>
                 <div>{this.customerView()}</div>
@@ -168,7 +179,7 @@ export class Customer extends Component {
                   <span>Sales Rep: </span>
                   <span>{user_first_name} {user_last_name}</span>
                   <div>
-                    <span >Progress</span>
+                    <span >Progress: </span>
                     <span>{cust_progress}</span>
                   </div>
                   <div>{this.customerView()}</div>
@@ -199,7 +210,7 @@ export class Customer extends Component {
               <span>Sales Rep: </span>
               <span>{user_first_name} {user_last_name}</span>
               <div>
-                <span >Progress</span>
+                <span >Progress: </span>
                 <span>{cust_progress}</span>
               </div>
               <div>{this.customerView()}</div>
@@ -231,7 +242,7 @@ export class Customer extends Component {
                   <span>Sales Rep: </span>
                   <span>{user_first_name} {user_last_name}</span>
                   <div>
-                    <span >Progress</span>
+                    <span >Progress: </span>
                     <span>{cust_progress}</span>
                   </div>
                   <div>{this.customerView()}</div>
@@ -264,7 +275,7 @@ export class Customer extends Component {
                     <span>Sales Rep: </span>
                     <span>{user_first_name} {user_last_name}</span>
                     <div>
-                      <span >Progress</span>
+                      <span >Progress: </span>
                       <span>{cust_progress}</span>
                     </div>
                     <div>{this.customerView()}</div>
