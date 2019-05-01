@@ -27,24 +27,34 @@ export class Login extends Component {
 
 
   render() {
-    const {dark} = this.props.user
+    const { dark } = this.props.user
     return (
       <div className="login">
         <div className={this.props.user.dark ? 'itemsWrapper itemsWrapperDark' : "itemsWrapper"}>
+          <h1>Login</h1>
           <div>
-            <h1>Login</h1>
-            <span>Email</span>
-            <input className={dark ? 'input inputDark' : 'input'} onChange={(e) => this.setState({ email: e.target.value })} value={this.state.email} type='text'></input>
-            <span>Password</span>
-            <input className={dark ? 'input inputDark' : 'input'} onChange={(e) => this.setState({ password: e.target.value })} value={this.state.password} type='password'></input>
-            <button className={dark? 'button buttonDark' : 'button'} onClick={() => this.login()}>Login</button>
+            <div className={dark ? 'createSystem createSystemDark' : 'createSystem'}>
+              <div className='customerInputsWrapper'>
+                <div className='customerInputsWrapper2'>
+                  <div className={dark ? 'customerInputs customerInputsDark' : 'customerInputs'}>
+                    <span>Email</span>
+                    <span>Password</span>
+                    <button className={dark ? 'button buttonDark' : 'button'} onClick={() => this.login()}>Login</button>
+                  </div>
+                  <div className={dark ? 'customerInputs customerInputsDark' : 'customerInputs'}>
+                    <input className={dark ? 'input inputDark' : 'input'} onChange={(e) => this.setState({ email: e.target.value })} value={this.state.email} type='text'></input>
+                    <input className={dark ? 'input inputDark' : 'input'} onChange={(e) => this.setState({ password: e.target.value })} value={this.state.password} type='password'></input>
+                    <span>No account? Register </span>
+                    <Link to='/register'>
+                      <button className={dark ? 'button buttonDark' : 'button'}>Here</button>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <div>
-            <span>Don't have an account? Register </span>
-            <Link to='/register'>
-            <button className={dark? 'button buttonDark' : 'button'}>Here</button>
-            </Link>
-          </div>
+          <div className='filler'></div>
+
         </div>
       </div>
     )

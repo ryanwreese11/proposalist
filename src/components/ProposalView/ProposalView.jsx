@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import axios from 'axios';
 import { connect } from 'react-redux'
 import { getData } from './../../ducks/userReducer'
-import Chart from './../Chart/Chart'
 import '../ProposalView/ProposalView.css'
 import BarChart from './../Chart/BarChart'
 import { Doughnut } from 'react-chartjs-2'
@@ -164,7 +163,7 @@ export class ProposalView extends Component {
 
     console.log(this.props)
 
-    const { firstName, lastName, address, email, usage, inverter, module, prePmtFactor, postPmtFactor, production, systemSize, systemCost, utility, ppw, utilityRate, loanName, loanTerm, interest, repFirstName, repLastName, moduleCount, propRatio } = this.state
+    const { firstName, lastName, address, email, usage, inverter, module, prePmtFactor, postPmtFactor,  systemSize,  utility, ppw, utilityRate, loanName, repFirstName, repLastName, moduleCount, propRatio } = this.state
 
     const multiply = (num1, num2) => {
       return num1 * num2
@@ -227,7 +226,7 @@ export class ProposalView extends Component {
                     label: 'Offset',
                     data: [
 
-                      usage, diff(Math.floor(propRatio * systemSize / 1000), usage)
+                      usage, diff(usage, Math.floor(propRatio * systemSize / 1000) )
                     ],
                     backgroundColor: [
                       'rgb(228, 159, 56)',
@@ -252,7 +251,7 @@ export class ProposalView extends Component {
               }} />
           </div>
           <div className='utilityPower'>
-            <div>{Math.floor(subtract(usage, (propRatio * systemSize / 1000)) / 100)}%</div>
+            <div>{Math.floor(subtract(100, divide((propRatio * systemSize / 1000), usage) * 100))}%</div>
           </div>
           <div className='offset'>
             <div>{Math.floor(divide((propRatio * systemSize / 1000), usage) * 100)}%</div>

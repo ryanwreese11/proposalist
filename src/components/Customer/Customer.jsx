@@ -43,7 +43,7 @@ export class Customer extends Component {
       // console.log(this.props)
       return Math.floor(num1 * num2)
     }
-    console.log(this.props.customer)
+    // console.log(this.props.customer)
     return (
 
       !edit ? (

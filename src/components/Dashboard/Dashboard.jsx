@@ -146,6 +146,7 @@ export class Dashboard extends Component {
               deleteCustomer={this.deleteCustomer}
             />
           })}
+        <div className='filler'></div>
         </div>
       </div>
     )

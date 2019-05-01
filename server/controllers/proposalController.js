@@ -1,11 +1,23 @@
+require('dotenv').config()
+
+const {TWILIO_SID,API_KEY, TWILIO_NUMBER} = process.env
+
+const client = require('twilio')(TWILIO_SID, API_KEY)
 module.exports = {
-  createProposal: (req, res) => {
+  createProposal: async(req, res) => {
     const { custId, utility, moduleName, inverterName, loanName, production, systemCost, systemSize, propSigned, moduleAmount, propRatio } = req.body
-
-    const { id } = req.session.user
-
+    const { id, firstName, lastName } = req.session.user
     const db = req.app.get('db')
-    db.create_proposal([custId, utility, id, moduleName, inverterName, loanName, production, systemCost, propSigned, systemSize, moduleAmount, propRatio ])
+    let createProposal = await db.create_proposal([custId, utility, id, moduleName, inverterName, loanName, production, systemCost, propSigned, systemSize, moduleAmount, propRatio ])
+    res.status(200).send(createProposal)
+    client.messages.create({
+      to: '+18013802038',
+      from: TWILIO_NUMBER,
+      body:  `${firstName} ${lastName}, you have a new proposal in your portal!`
+    })
+
+
+
   },
 
   getProposalById: (req, res) => {

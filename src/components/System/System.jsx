@@ -184,7 +184,7 @@ export class System extends Component {
             <span name="systemCost">System Cost: ${this.state.systemCost}.00 </span>
             <span> Usage Offset: {Math.floor(this.state.production / this.state.usage * 100)}%</span>
           </div>
-          <div style={{width: '90%'}}className='customerInputsWrapper'>
+          <div style={{ width: '90%' }} className='customerInputsWrapper'>
             <div className='customerInputsWrapper2'>
               <div className={dark ? 'customerInputs customerInputsDark' : 'customerInputs'}>
                 <span>Production from Design Tool: </span>
@@ -231,9 +231,9 @@ export class System extends Component {
             <button className={dark ? 'button buttonDark' : 'button'} onClick={() => { this.setSystemCost(this.state.systemSize, this.state.ppw); this.setPropRatio(this.state.production, this.state.systemSize) }}>Calculate System Cost</button>
 
           </div>
-        <Link to={`/proposal/${this.props.match.params.cust_id}`}>
-          <button className={dark ? 'button buttonDark' : 'button'} onClick={() => { this.newProposal(); this.updateCustomer() }} >Create Proposal</button>
-        </Link>
+          <Link to={`/proposal/${this.props.match.params.cust_id}`}>
+            <button className={dark ? 'button buttonDark' : 'button'} onClick={() => { this.newProposal(); this.updateCustomer() }} >Create Proposal</button>
+          </Link>
         </div>
 
 
