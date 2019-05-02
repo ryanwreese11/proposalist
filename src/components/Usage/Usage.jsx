@@ -88,7 +88,7 @@ export class Usage extends Component {
   deleteCustomer = (id) => {
     axios.delete(`/api/customers/${this.props.match.params.cust_id}`, id).then(res => {
 
-      console.log(res)
+      
 
     }).catch(err => console.log('there was an error.', err))
 

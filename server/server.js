@@ -49,7 +49,7 @@ app.get('/api/customers/:id', cc.getCustomersById)
 app.post('/api/customers', cc.newCust)
 app.get('/api/usage/:cust_id', cc.getCustomer)
 app.put('/api/usage/:cust_id', cc.updateCustomer)
-app.delete('/api/customers/:cust_id', cc.deleteCustomer)
+app.delete('/api/customers/:id', cc.deleteCustomer)
 
 
 

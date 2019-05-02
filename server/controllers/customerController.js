@@ -83,7 +83,8 @@ module.exports = {
     .catch(err => {
       res.status(500).send("Oops! Something went wrong. Our engineers have been informed!");
       console.log(err)
-    });
+    })
+    // res.redirect('/');
   }
 
 }

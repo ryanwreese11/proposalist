@@ -98,7 +98,7 @@ export class Dashboard extends Component {
       return <div>{`${item.cust_progress}`}</div>
     })
 
-      console.log(this.props)
+      // console.log(this.props)
 
     const {dark} = this.props.user
     return (
