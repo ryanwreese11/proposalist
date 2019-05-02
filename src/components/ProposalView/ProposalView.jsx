@@ -197,9 +197,9 @@ export class ProposalView extends Component {
           </div>
           <div className='currentBill' >
             <span>${multiply(usage, utilityRate / 12).toFixed(2)}</span>
-            <span>${multiply(usage, utilityRate).toFixed(2) * 2}</span>
-            <span>4%</span>
             <span>${multiply(usage, utilityRate).toFixed(2)}</span>
+            <span>4%</span>
+            <span>${multiply(usage, utilityRate).toFixed(2)* 2}</span>
           </div>
           <div className='currentAnnualBill'>
           </div>
