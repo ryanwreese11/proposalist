@@ -26,12 +26,7 @@ app.use(session({
 }))
 
 
-massive(CONNECTION_STRING)
-  .then(db => {
-    app.set('db', db)
-    console.log('db running')
-    app.listen(SERVER_PORT, () => console.log(`Listening on port:${SERVER_PORT}`))
-  })
+
 
 // --- ENDPOINTS --- //
 

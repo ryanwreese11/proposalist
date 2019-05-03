@@ -27,7 +27,7 @@ export class Dashboard extends Component {
     if (this.props.user.rep) {
       this.getCustomersById(this.props.user.id)
     } else {
-      this.getCustomers()
+      
     }
   }
 
